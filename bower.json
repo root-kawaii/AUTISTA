@@ -1,0 +1,21 @@
+{
+  "name": "AUI_Project",
+  "authors": [
+    "Matteo Regge <matteo.regge@mail.polimi.it> Francesco Leone <francesco.leone@mail.polimi.it> Francesco Dami <francesco.dami@mail.polimi.it>"
+  ],
+  "description": "",
+  "main": "app.py",
+  "license": "Politecnico di Milano",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^16.1.0",
+    "bootstrap": "^5.2.2"
+  }
+}
