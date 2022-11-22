@@ -11,12 +11,14 @@ bar = pd.DataFrame({'x': [10, 20, 30], 'y': ['aa', 'bb', 'cc']})
 foo.to_csv('foo.csv')
 bar.to_csv('bar.csv')
 
+with open('auth.txt') as file:
+    Lines = [line.rstrip() for line in file]
 
 s3 = boto3.resource(
     service_name='s3',
     region_name='eu-central-1',
-    aws_access_key_id='AKIATA4NFR522E4NRMQV',
-    aws_secret_access_key='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'
+    aws_access_key_id=Lines[0],
+    aws_secret_access_key=Lines[1]
 )
 
 # Upload files to S3 bucket
@@ -25,7 +27,7 @@ s3.Bucket('aui20222').upload_file(Filename='bar.csv', Key='bar.csv')
 
 obj_list_key = []
 for obj in s3.Bucket('aui20222').objects.all():
-    print(obj.key)
+    print(type(obj.key))
     obj_list_key.append(obj.key)
     
     
@@ -47,7 +49,7 @@ def get_time():
 	return {
 		'Name':"geek",
 		"Age":"22",
-		"Keys":obj_list_key,
+		"Keys": obj_list_key,
         "Data": x,
 		"programming":"python"
 		}

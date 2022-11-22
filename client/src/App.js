@@ -9,7 +9,7 @@ function App() {
 		name: "",
 		age: 0,
 		date: "",
-		keys: "",
+		keys : [""],
 		programming: "",
 	});
 
@@ -23,9 +23,9 @@ function App() {
 				setdata({
 					name: data.Name,
 					age: data.Age,
-					date: data.Date,
+					date: data.Data,
 					programming: data.programming,
-					keys: data.keys[1]
+					keys: data.Keys
 				});
 			})
 		);
@@ -34,15 +34,14 @@ function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<h1>React and flask</h1>
+				<h1>COMMUTTI II GANG</h1>
+				<h3>We stand for legal weed</h3>
 				{/* Calling a data from setdata for showing */}
 				<p>{data.name}</p>
 				<p>{data.age}</p>
 				<p>{data.date}</p>
-				<p>{data.programming}</p>
-				<p>{data.keys}</p>
-
-			</header>
+			<img src={"https://aui20222.s3.eu-central-1.amazonaws.com/"+ data.keys[0]} alt="br" heigt={300} width={300}></img>
+			</header>	
 		</div>
 	);
 }
