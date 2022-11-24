@@ -24,6 +24,8 @@ s3 = boto3.resource(
 # Upload files to S3 bucket
 s3.Bucket('aui20222').upload_file(Filename='foo.csv', Key='foo.csv')
 s3.Bucket('aui20222').upload_file(Filename='bar.csv', Key='bar.csv')
+s3.Bucket('aui20222').upload_file(Filename='audioBanana.aac', Key='audioBanana.aac')
+
 
 obj_list_key = []
 for obj in s3.Bucket('aui20222').objects.all():
@@ -40,7 +42,7 @@ x = datetime.datetime.now()
 # Initializing flask app
 app = Flask(__name__)
 
-
+# http://127.0.0.1:5000/data
 # Route for seeing a data
 @app.route('/data')
 def get_time():

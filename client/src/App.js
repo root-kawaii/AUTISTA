@@ -1,6 +1,7 @@
 // Importing modules
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import AudioPlayer from "./AudioPlayer";
 
 function App() {
 	// usestate for setting a javascript
@@ -41,6 +42,7 @@ function App() {
 				<p>{data.age}</p>
 				<p>{data.date}</p>
 			<img src={"https://aui20222.s3.eu-central-1.amazonaws.com/"+ data.keys[0]} alt="br" heigt={300} width={300}></img>
+			<AudioPlayer url={"https://aui20222.s3.eu-central-1.amazonaws.com/audioBanana.aac"}/>
 			</header>	
 		</div>
 	);
