@@ -13,6 +13,9 @@ s3 = boto3.resource(
     aws_secret_access_key=Lines[1]
 )
 
+#Upload
+s3.Bucket('aui20222').upload_file(Filename='audioBanana.aac', Key='audioBanana.aac')
+
 obj_list_key = []
 for obj in s3.Bucket('aui20222').objects.all():
     print(type(obj.key))
