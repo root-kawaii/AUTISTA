@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import AudioPlayer from "./AudioPlayer";
+import AudioRecorder from "./AudioRecorder";
 
 function App() {
 	// usestate for setting a javascript
@@ -43,6 +44,7 @@ function App() {
 				<p>{data.date}</p>
 			<img src={"https://aui20222.s3.eu-central-1.amazonaws.com/"+ data.keys[0]} alt="br" heigt={300} width={300}></img>
 			<AudioPlayer url={"https://aui20222.s3.eu-central-1.amazonaws.com/audioBanana.aac"}/>
+			<AudioRecorder />
 			</header>	
 		</div>
 	);
