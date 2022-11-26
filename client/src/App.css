@@ -35,4 +35,21 @@
   to {
     transform: rotate(360deg);
   }
+
 }
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 33.33%;
+  padding: 5px;
+}
+
+
+img {
+  height: 400px;
+  width: 400px;
+  /* background-color: powderblue; */
+}
+

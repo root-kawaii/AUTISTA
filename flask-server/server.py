@@ -12,19 +12,34 @@ s3 = boto3.resource(
     aws_access_key_id=Lines[0],
     aws_secret_access_key=Lines[1]
 )
+# List of arrays to list_array
+list_array = []
+# Upload
 
-#Upload
-s3.Bucket('aui20222').upload_file(Filename='audioBanana.aac', Key='audioBanana.aac')
+s3.Bucket('aui20222').upload_file(
+    Filename='audioBanana.aac', Key='audioBanana.aac')
 
+'''
 obj_list_key = []
 for obj in s3.Bucket('aui20222').objects.all():
-    print(type(obj.key))
+    print(type(obj.key))    
     obj_list_key.append(obj.key)
-    
-    
-# Import flask and datetime module for showing date and time
+'''
 
-x = datetime.datetime.now()
+subjects = []
+for obj in s3.Bucket('aui20222').objects.filter(Prefix="Subjects/", Delimiter='/'):
+    subjects.append(obj.key)
+list_array.append(subjects)
+
+places = []
+for obj in s3.Bucket('aui20222').objects.filter(Prefix="Places/", Delimiter='/'):
+    places.append(obj.key)
+list_array.append(places)
+
+events = []
+for obj in s3.Bucket('aui20222').objects.filter(Prefix="Events/", Delimiter='/'):
+    events.append(obj.key)
+list_array.append(events)
 
 # Initializing flask app
 app = Flask(__name__)
@@ -37,11 +52,11 @@ def get_time():
     page = int(request.args.get('page'))
     print("current page request: " + str(page))
     return {
-        'name': "geek",
-        "age": "22",
-        # "keys": obj_list_key,
+        'name': "Mario Rossi",
+        "age": "3",
+        "keys": list_array[page % 3],
+        # "subjects": subjects,
         "test_images": [page + 1, page + 2, page + 3],
-        "data": x,
         "page": page,
     }
 
