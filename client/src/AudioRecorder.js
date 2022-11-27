@@ -2,6 +2,7 @@ import React from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
+const serverURL = "/data"
 
 class AudioRecorder extends React.Component {
   constructor(props){
@@ -18,6 +19,15 @@ class AudioRecorder extends React.Component {
   //     FUNCTION TO SEND RECORDED AUDIO TO SERVER
   sendAudioToServer = () => {
     this.setState(this.setState({ isSent: true }))
+
+    // fetch(serverURL, {
+    //
+    //   method: 'POST',
+    //   mode: 'cors',        //this depends on the port used by the React app and server
+    //   body: JSON.stringify(this.blobURL)
+    //
+    // })
+
   }
 
   start = () => {
