@@ -1,7 +1,9 @@
 import datetime
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 import json
 import boto3
+import sessionManager
 
 with open('auth.txt') as file:
     Lines = [line.rstrip() for line in file]
@@ -59,6 +61,22 @@ def get_time():
         "test_images": [page + 1, page + 2, page + 3],
         "page": page,
     }
+
+
+@app.route('/add', methods=["POST"], strict_slashes=False)
+@cross_origin()
+def request_received():
+    return add_session()
+
+
+@app.route('/get', methods=["GET"], strict_slashes=False)
+def send_settings():
+    return sessionManager.get_player_session(request.args.get('code'))
+
+def add_session():
+    session_code = request.json['session_code']
+    session_settings = request.json['session_settings']
+    sessionManager.add_call(session_code, session_settings)
 
 
 # Running app

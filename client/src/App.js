@@ -6,6 +6,9 @@ import AudioRecorder from "./AudioRecorder";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
+import JoinSession from "./pages/JoinSession";
+import CreateSession from "./pages/CreateSession";
+import TutorMeeting from "./pages/TutorMeeting";
 
 function App() {
 
@@ -29,6 +32,9 @@ function App() {
                       */}
                       <Route path="/" element={<Home />} />
                       <Route path="/login" element={<LoginPage />} />
+                      <Route path="/join" element={<JoinSession />} />
+                      <Route path="/create" element={<CreateSession />} />
+                      <Route path="/tutorMeeting/:sessionCode" element={<TutorMeeting />} />
                   </Routes>
               </div>
           </div>
