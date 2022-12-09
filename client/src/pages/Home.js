@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "./Home.css";
+import AudioPlayer from "../AudioPlayer"
+import AudioRecorder from "../AudioRecorder"
 
 
 function Home(){
@@ -131,16 +133,17 @@ function Home(){
                       earth.<br></br>
                       Those modest gods touch us-- touch us and move on.
                     </text>
-                  </div>
-                </div>
-                {/* update every click... */}
-                {/* <button onClick={fetchImages}>next page!</button> */}
-                {/* <AudioPlayer
+                    <AudioPlayer
                   url={
                     "https://aui20222.s3.eu-central-1.amazonaws.com/audioBanana.aac"
                   }
                 />
-                <AudioRecorder /> */}
+                <AudioRecorder />
+
+                  </div>
+                </div>
+                {/* update every click... */}
+                {/* <button onClick={fetchImages}>next page!</button> */}
               </>
             )}
           </header>

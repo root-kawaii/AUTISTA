@@ -24,7 +24,7 @@ s3.Bucket('aui20222').upload_file(
 '''
 obj_list_key = []
 for obj in s3.Bucket('aui20222').objects.all():
-    print(type(obj.key))    
+    print(type(obj.key))
     obj_list_key.append(obj.key)
 '''
 
@@ -63,6 +63,22 @@ def get_time():
     }
 
 
+@app.route('/audio', methods=['GET', 'POST'])
+def get_audio():
+    # Returning an api for showing in reactjs
+    audio = request.get_json()
+    print("current page request: " + audio)
+
+
+@ app.route('/ses', methods=['GET', 'POST'])
+def get_ses():
+    # Returning an api for showing in reactjs
+    body = request.get_json()
+    #print("current page request: " + body)
+    print(body["age"])
+    return(body)
+
+
 @app.route('/add', methods=["POST"], strict_slashes=False)
 @cross_origin()
 def request_received():
@@ -72,6 +88,7 @@ def request_received():
 @app.route('/get', methods=["GET"], strict_slashes=False)
 def send_settings():
     return sessionManager.get_player_session(request.args.get('code'))
+
 
 def add_session():
     session_code = request.json['session_code']

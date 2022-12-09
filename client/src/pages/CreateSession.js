@@ -4,7 +4,9 @@ import {useNavigate} from "react-router-dom";
 
 
 const CreateSession = (props) => {
-    const [settings, setSettings] = useState('')
+    const [age, setParamOne] = useState('')
+    const [names, setParamTwo] = useState('')
+    const [settings, setParamThree] = useState('')
     const navigate = useNavigate();
     const length = 6;
     var sessionCode = [];
@@ -26,27 +28,68 @@ const CreateSession = (props) => {
         return result;
     }
 
+    function sendSessionInfo(){
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                'age': age,
+                'name': names,
+                'setting': settings, })
+        };
+        fetch("/ses?" , requestOptions)
+            .then(response => response.json())
+            .then(data => this.setState({ postId: data.id }));
+    }
+
 
     const handleSubmit=(event)=>{
+        
         event.preventDefault();
         sessionCode = generateString(length);
         newSession();
         navigate('/tutorMeeting/'+sessionCode)
+        sendSessionInfo();
+
     }
 
     return(
         <div className="CreateSession">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="body" className="form-label">Body</label>
+                <section>
                 <textarea
                     className="Create_Session"
-                    placeholder ="Enter settings"
-                    rows='6'
-                    value={settings}
-                    onChange={(e)=>setSettings(e.target.value)}
+                    placeholder ="Enter Age"
+                    rows='1'
+                    value={age}
+                    onChange={(e)=>setParamOne(e.target.value)}
                     required
                 >
                 </textarea>
+                </section>
+                <section>
+                <textarea
+                    className="Create_Session"
+                    placeholder ="Enter Name and Surname"
+                    rows='1'
+                    value={names}
+                    onChange={(e)=>setParamTwo(e.target.value)}
+                    required
+                >
+                </textarea>
+                </section>
+                <section>
+                <textarea
+                    className="Create_Session"
+                    placeholder ="Enter Therapy Number"
+                    rows='1'
+                    value={settings}
+                    onChange={(e)=>setParamThree(e.target.value)}
+                    required
+                >
+                </textarea>
+                </section>
                 <button
                     className={"Create Session Button"}
                     >
