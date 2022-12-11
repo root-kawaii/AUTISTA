@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "./Session.css";
-import AudioPlayer from "../components/AudioPlayer";
-import AudioRecorder from "../components/AudioRecorder";
+import AudioPlayer from "../AudioUtilities/AudioPlayer";
+import AudioRecorder from "../AudioUtilities/AudioRecorder";
 import Button from '@mui/material/Button';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 

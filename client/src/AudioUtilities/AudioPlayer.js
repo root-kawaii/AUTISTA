@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-<<<<<<<< HEAD:client/src/components/AudioPlayer.js
 import { Button } from "@mui/material";
-========
 import textToSpeech from "./TextToSpeech";
 import TTS from "./TextToSpeech";
->>>>>>>> 89652419b27a15052dc1843fcbf733421e37a9ce:client/src/AudioUtilities/AudioPlayer.js
+
 
 const currentBaseUrl = "https://aui20222.s3.eu-central-1.amazonaws.com/";
 const currentAudioName = "audioBanana.aac";
