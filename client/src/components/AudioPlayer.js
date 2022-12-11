@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button } from "@mui/material";
 
 const currentBaseUrl = "https://aui20222.s3.eu-central-1.amazonaws.com/";
 const currentAudioName = "audioBanana.aac";
@@ -30,7 +31,7 @@ const AudioPlayer = ({ url }) => {
 
   return (
     <div>
-      <button onClick={toggle}>{playing ? "Pause" : "Play" }</button>
+      <Button variant='contained' onClick={toggle}>{playing ? "Pause" : "Play" }</Button>
     </div>
   );
 };

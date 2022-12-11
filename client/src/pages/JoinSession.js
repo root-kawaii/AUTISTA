@@ -1,5 +1,7 @@
 import APIService from "../components/Server_Connection_API";
 import {useState} from "react";
+import './JoinSession.css'
+import Button from '@mui/material/Button';
 
 function JoinSession(){
     const [code, setCode] = useState('');
@@ -13,6 +15,7 @@ function JoinSession(){
         setCode(event.target.value);
     }
     return(
+        <header className="join-session">
         <div className="JoinSession">
             <h1>
                 Inserire codice sessione
@@ -24,11 +27,13 @@ function JoinSession(){
                 onChange={handleChange}
                 value={code}
             />
-
-            <button onClick={startGame}>
+        <div>
+            <Button variant="contained"  onClick={startGame}>
                 Start session
-            </button>
+            </Button>
         </div>
+        </div>
+        </header>
     )
 }
 

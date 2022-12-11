@@ -1,6 +1,9 @@
 import {useEffect, useState} from "react";
 import APIService from "../components/Server_Connection_API";
 import {useNavigate} from "react-router-dom";
+import { Button } from "@mui/material";
+import { TextareaAutosize } from "@mui/material";
+
 
 
 const CreateSession = (props) => {
@@ -58,7 +61,7 @@ const CreateSession = (props) => {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="body" className="form-label">Body</label>
                 <section>
-                <textarea
+                <TextareaAutosize
                     className="Create_Session"
                     placeholder ="Enter Age"
                     rows='1'
@@ -66,10 +69,10 @@ const CreateSession = (props) => {
                     onChange={(e)=>setParamOne(e.target.value)}
                     required
                 >
-                </textarea>
+                </TextareaAutosize>
                 </section>
                 <section>
-                <textarea
+                <TextareaAutosize
                     className="Create_Session"
                     placeholder ="Enter Name and Surname"
                     rows='1'
@@ -77,10 +80,10 @@ const CreateSession = (props) => {
                     onChange={(e)=>setParamTwo(e.target.value)}
                     required
                 >
-                </textarea>
+                </TextareaAutosize>
                 </section>
                 <section>
-                <textarea
+                <TextareaAutosize
                     className="Create_Session"
                     placeholder ="Enter Therapy Number"
                     rows='1'
@@ -88,13 +91,13 @@ const CreateSession = (props) => {
                     onChange={(e)=>setParamThree(e.target.value)}
                     required
                 >
-                </textarea>
+                </TextareaAutosize>
                 </section>
-                <button
+                <Button variant='contained'
                     className={"Create Session Button"}
                     >
                     Create Session
-                </button>
+                </Button>
             </form>
         </div>
     )

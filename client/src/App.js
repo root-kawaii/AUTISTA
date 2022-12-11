@@ -1,20 +1,23 @@
 // Importing modules
 import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
-import AudioPlayer from "./AudioPlayer";
-import AudioRecorder from "./AudioRecorder";
+import AudioPlayer from "./components/AudioPlayer";
+import AudioRecorder from "./components/AudioRecorder";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import JoinSession from "./pages/JoinSession";
 import CreateSession from "./pages/CreateSession";
 import TutorMeeting from "./pages/TutorMeeting";
+import Session from "./pages/Session";
+
+
 
 function App() {
 
   return (
       <Router>
-          <div className="App">
+            <div className="App">
               {/*
               NavBar ci interessa?
               barra in alto con (esempio) contatti/credits/immagini e potenzialmente
@@ -32,6 +35,7 @@ function App() {
                       */}
                       <Route path="/" element={<Home />} />
                       <Route path="/login" element={<LoginPage />} />
+                      <Route path="/session" element={<Session />} />
                       <Route path="/join" element={<JoinSession />} />
                       <Route path="/create" element={<CreateSession />} />
                       <Route path="/tutorMeeting/:sessionCode" element={<TutorMeeting />} />

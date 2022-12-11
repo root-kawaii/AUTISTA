@@ -1,5 +1,6 @@
 import React from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
+import { Button } from '@mui/material';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 const serverURL = "/audio"
@@ -23,7 +24,7 @@ class AudioRecorder extends React.Component {
     fetch(serverURL, {
     
        method: 'POST',
-       //mode: 'cors',        //this depends on the port used by the React app and server
+       mode: 'cors',        //this depends on the port used by the React app and server
        body: JSON.stringify(this.blobURL)
     
      })
@@ -70,11 +71,11 @@ class AudioRecorder extends React.Component {
         // if you use something different from "className=App", the recording set is rendered differently
       <div className="App">
         <header className="App-header">
-          <button onClick={this.start} disabled={this.state.isRecording}>Record</button>
-          <button onClick={this.stop} disabled={!this.state.isRecording}>Stop</button>
+          <Button variant='contained' onClick={this.start} disabled={this.state.isRecording}>Record</Button>
+          <Button variant='contained' onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
           <audio src={this.state.blobURL} controls="controls" />
           {/*just to check if the sendAudioToServer function is called*/}
-          <button disabled={this.state.isSent}>SENT</button>
+          <Button variant='contained' disabled={this.state.isSent}>SENT</Button>
         </header>
       </div>
     );
