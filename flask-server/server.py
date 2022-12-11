@@ -1,6 +1,6 @@
 import datetime
 from flask import Flask, request
-from flask_cors import CORS, cross_origin
+# from flask_cors import CORS, cross_origin
 import json
 import boto3
 import sessionManager
@@ -80,7 +80,7 @@ def get_ses():
 
 
 @app.route('/add', methods=["POST"], strict_slashes=False)
-@cross_origin()
+# @cross_origin()
 def request_received():
     return add_session()
 

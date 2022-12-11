@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "./Home.css";
-import AudioPlayer from "../AudioPlayer"
-import AudioRecorder from "../AudioRecorder"
+import AudioPlayer from "../AudioUtilities/AudioPlayer"
+import AudioRecorder from "../AudioUtilities/AudioRecorder"
 
 
 function Home(){

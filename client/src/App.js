@@ -1,14 +1,17 @@
 // Importing modules
 import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
-import AudioPlayer from "./AudioPlayer";
-import AudioRecorder from "./AudioRecorder";
+import AudioPlayer from "./AudioUtilities/AudioPlayer";
+import AudioRecorder from "./AudioUtilities/AudioRecorder";
+import TTS from "./AudioUtilities/TextToSpeech"
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import JoinSession from "./pages/JoinSession";
 import CreateSession from "./pages/CreateSession";
 import TutorMeeting from "./pages/TutorMeeting";
+import TextToSpeech from "./AudioUtilities/TextToSpeech";
+import Settings from "./pages/Settings";
 
 function App() {
 
@@ -35,6 +38,10 @@ function App() {
                       <Route path="/join" element={<JoinSession />} />
                       <Route path="/create" element={<CreateSession />} />
                       <Route path="/tutorMeeting/:sessionCode" element={<TutorMeeting />} />
+
+                       {/*<Route path="/test" element={<TextToSpeech banana />} />*/}
+                      <Route path="/test" element={<Settings/>} />
+
                   </Routes>
               </div>
           </div>
