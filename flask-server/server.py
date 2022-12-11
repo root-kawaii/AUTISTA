@@ -67,7 +67,8 @@ def get_time():
 def get_audio():
     # Returning an api for showing in reactjs
     audio = request.get_json()
-    print("current page request: " + audio)
+    #print("current page request: " + audio)
+    return audio
 
 
 @ app.route('/ses', methods=['GET', 'POST'])
