@@ -4,21 +4,72 @@ import AudioPlayer from "../AudioUtilities/AudioPlayer";
 import AudioRecorder from "../AudioUtilities/AudioRecorder";
 import Button from '@mui/material/Button';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-
+import "../App.css";
+import WebSocketCall from "../components/WebSocketCall";
+import { io } from "socket.io-client";
 
 
 
 function Session(){
 
+
     const [data, setData] = useState({
     page: 0,
   });
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isSelection, setIsSelection] = useState(true);
   const [err, setErr] = useState("");
   const [pick, setPick] = useState(0);
+  const [socketInstance, setSocketInstance] = useState("  ");
+  const [loading, setLoading] = useState(false);
 
-  console.log(isSelection);
+  const [hastoPull,setPullState] = useState(true)
+  const [messages, setMessages] = useState({
+    page: 0,
+    keys: [],
+    check: 0
+  });
+  const [pager, setPage] = useState(0)
+
+  const setStates = () => {
+    setPullState(true)
+    setLoading(false)
+    if (hastoPull === true) {
+      var socket = io("http://127.0.0.1:5000", {
+        transports: ["websocket"],
+        cors: {
+          origin: "http://localhost:3000/",
+        },
+      });
+  
+      setSocketInstance(socket);
+  
+      socket.on("connect", (data) => {
+        setMessages({
+          page: 0,
+          keys: data.keys,
+          check : 10
+      });
+        });
+
+        socket.on("disconnect", (data) => {
+          console.log(data);
+        });
+  
+        return function cleanup() {
+          socket.disconnect();
+        };
+      }
+    
+    setLoading(true)
+    setPullState(false)
+  }
+
+  const progress = () =>{
+    setPage(pager + 1)
+    socketInstance.emit("data",pager);
+  }
+
   const navigate = useNavigate();
 
   const navigateCreation = () => {
@@ -26,30 +77,11 @@ function Session(){
     navigate('/join');
   };
 
-  const fetchImages = () => {
-    setIsLoading(true);
-    fetch("/data?" + new URLSearchParams({ page: data.page }))
-      .then((res) => res.json())
-      .then(
-        (data) => {
-          setIsLoading(false);
-          setData({
-            ...data,
-            page: data.page + 1,
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components. thanks docs!
-        (error) => {
-          setIsLoading(false);
-          setErr(error);
-        }
-      );
-  };
 
   // load initial state
-  useEffect(fetchImages, []);
+  useEffect(setStates, []);
+
+  console.log(socketInstance)
 
   return(
       <div className="Session">
@@ -73,7 +105,7 @@ function Session(){
                       }}
                       src={
                         "https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        data.keys[1]
+                        messages.keys[1]
                       }
                       alt="Immagine 1"
                     ></img>
@@ -88,7 +120,7 @@ function Session(){
                       }}
                       src={
                         "https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        data.keys[2]
+                        messages.keys[2]
                       }
                       alt="Immagine 2"
                     ></img>
@@ -103,7 +135,7 @@ function Session(){
                       }}
                       src={
                         "https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        data.keys[3]
+                        messages.keys[3]
                       }
                       alt="Immagine 3"
                     ></img>
@@ -130,12 +162,12 @@ function Session(){
                   <div className="column">
                     <img
                       onClick={() => {
-                        fetchImages();
+                        progress();
                         setIsSelection(true);
                       }}
                       src={
                         "https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        data.keys[pick + 1]
+                        messages.keys[pick + 1]
                       }
                       alt="Immagine 1"
                     ></img>
@@ -171,3 +203,5 @@ function Session(){
 }
 
 export default Session;
+
+

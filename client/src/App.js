@@ -16,7 +16,9 @@ import Session from "./pages/Session";
 
 
 
+
 function App() {
+
 
   return (
       <Router>
@@ -38,7 +40,7 @@ function App() {
                       */}
                       <Route path="/" element={<Home />} />
                       <Route path="/login" element={<LoginPage />} />
-                      <Route path="/session" element={<Session />} />
+                      <Route path="/session/:sessionCode" element={<Session />} />
                       <Route path="/join" element={<JoinSession />} />
                       <Route path="/create" element={<CreateSession />} />
                       <Route path="/tutorMeeting/:sessionCode" element={<TutorMeeting />} />

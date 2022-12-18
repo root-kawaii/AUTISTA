@@ -1,9 +1,10 @@
 import datetime
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 import json
 import boto3
 import sessionManager
+from flask_socketio import SocketIO, emit
 
 with open('auth.txt') as file:
     Lines = [line.rstrip() for line in file]
@@ -45,10 +46,36 @@ list_array.append(events)
 
 # Initializing flask app
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
+socketio = SocketIO(app, cors_allowed_origins="*")
+
+page = 0
 
 
+@socketio.on("connect")
+def connected():
+    print('connected')
+    emit("connect", {'keys': list_array[int(page) % 3]}, broadcast=True)
+
+
+@socketio.on("data")
+def handle_message(data):
+    page = data
+    print(data)
+    emit("connect", {
+         'keys': list_array[page % 3], 'page': page}, broadcast=True)
+
+
+@socketio.on("disconnect")
+def disconnected():
+    """event listener when client disconnects to the server"""
+    print("user disconnected")
+    emit("disconnect", f"user {request.sid} disconnected", broadcast=True)
+
+
+'''
 # Route for seeing a data
-@app.route('/data')
+@app.route('/data', methods=['GET', 'POST'])
 def get_time():
     # Returning an api for showing in reactjs
     page = int(request.args.get('page'))
@@ -61,6 +88,7 @@ def get_time():
         "test_images": [page + 1, page + 2, page + 3],
         "page": page,
     }
+'''
 
 
 @app.route('/audio', methods=['GET', 'POST'])
