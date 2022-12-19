@@ -60,6 +60,8 @@ for obj in s3.Bucket('aui20222').objects.filter(Prefix="Stories_Adv/", Delimiter
     story_adv.append(obj.key)
 str_aray.append(story_adv)
 
+
+print(str_aray[2])
 # Initializing flask app
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
