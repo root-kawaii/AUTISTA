@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState,useContext,Text} from "react";
 import "./Session.css";
 import AudioPlayer from "../AudioUtilities/AudioPlayer";
 import AudioRecorder from "../AudioUtilities/AudioRecorder";
@@ -7,6 +7,8 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 import "../App.css";
 import WebSocketCall from "../components/WebSocketCall";
 import { io } from "socket.io-client";
+import {socket, SocketContext} from '../components/socketto';
+
 
 
 
@@ -27,47 +29,47 @@ function Session(){
   const [messages, setMessages] = useState({
     page: 0,
     keys: [],
-    check: 0
+    str_keys: []
   });
   const [pager, setPage] = useState(0)
+  const socket = useContext(SocketContext);
+  console.log(socket)
+
+  
 
   const setStates = () => {
     setPullState(true)
     setLoading(false)
-    if (hastoPull === true) {
-      var socket = io("http://127.0.0.1:5000", {
-        transports: ["websocket"],
-        cors: {
-          origin: "http://localhost:3000/",
-        },
-      });
-  
-      setSocketInstance(socket);
+    if (socket) {
   
       socket.on("connect", (data) => {
         setMessages({
-          page: 0,
           keys: data.keys,
-          check : 10
+          str_keys : data.story_keys
       });
         });
-
-        socket.on("disconnect", (data) => {
-          console.log(data);
-        });
-  
-        return function cleanup() {
-          socket.disconnect();
-        };
+        
       }
     
     setLoading(true)
     setPullState(false)
   }
 
+
   const progress = () =>{
-    setPage(pager + 1)
-    socketInstance.emit("data",pager);
+    console.log(messages)
+    setPage(pager==0 ? 1 : pager + 1)
+    console.log(pager)
+    socket.emit("data",pager);
+  }
+
+
+  const endConnection = () => {
+
+
+    return function cleanup() {
+      socket.disconnect();
+    };
   }
 
   const navigate = useNavigate();
@@ -81,7 +83,6 @@ function Session(){
   // load initial state
   useEffect(setStates, []);
 
-  console.log(socketInstance)
 
   return(
       <div className="Session">
@@ -173,17 +174,15 @@ function Session(){
                     ></img>
                   </div>
                   <div className="column">
-                    <text>
-                      <br></br>
-                      Eight million Shinto deities travel secretly throughout the
-                      earth.<br></br>
-                      Those modest gods touch us-- touch us and move on.
+                    <text src={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                        messages.str_keys[2 * pick + 2]}>
                     </text>
                     </div>
                 </div>
                 <div className="row">
                     <AudioPlayer
-                        url={"https://aui20222.s3.eu-central-1.amazonaws.com/audioBanana.aac"}
+                        url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                        messages.str_keys[2 * pick + 1]}
                     />
                 </div>
                 <div className="row">

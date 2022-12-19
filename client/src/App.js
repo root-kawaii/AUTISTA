@@ -13,6 +13,7 @@ import TutorMeeting from "./pages/TutorMeeting";
 import TextToSpeech from "./AudioUtilities/TextToSpeech";
 import Settings from "./pages/Settings";
 import Session from "./pages/Session";
+import {SocketContext, socket} from './components/socketto';
 
 
 
@@ -21,6 +22,7 @@ function App() {
 
 
   return (
+    <SocketContext.Provider value={socket}>
       <Router>
             <div className="App">
               {/*
@@ -29,6 +31,7 @@ function App() {
               qualsiasi cosa utile acessibile senza login?
               */}
               <div className="content">
+              
                   <Routes>
                       {/*
                       Insert here all the pages of the client
@@ -38,6 +41,7 @@ function App() {
                       NEW_PAGE_URL is the name that we want at the end of the url
                       JSX_FILENAME is the name of the file in the PAGES FOLDER without .js
                       */}
+
                       <Route path="/" element={<Home />} />
                       <Route path="/login" element={<LoginPage />} />
                       <Route path="/session/:sessionCode" element={<Session />} />
@@ -52,6 +56,7 @@ function App() {
               </div>
           </div>
       </Router>
+      </SocketContext.Provider>
   );
 }
 

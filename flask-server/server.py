@@ -15,8 +15,9 @@ s3 = boto3.resource(
     aws_access_key_id=Lines[0],
     aws_secret_access_key=Lines[1]
 )
-# List of arrays to list_array
-list_array = []
+# List of arrays to img_array
+img_array = []
+str_aray = []
 # Upload
 
 s3.Bucket('aui20222').upload_file(
@@ -32,17 +33,32 @@ for obj in s3.Bucket('aui20222').objects.all():
 subjects = []
 for obj in s3.Bucket('aui20222').objects.filter(Prefix="Subjects/", Delimiter='/'):
     subjects.append(obj.key)
-list_array.append(subjects)
+img_array.append(subjects)
 
 places = []
 for obj in s3.Bucket('aui20222').objects.filter(Prefix="Places/", Delimiter='/'):
     places.append(obj.key)
-list_array.append(places)
+img_array.append(places)
 
 events = []
 for obj in s3.Bucket('aui20222').objects.filter(Prefix="Events/", Delimiter='/'):
     events.append(obj.key)
-list_array.append(events)
+img_array.append(events)
+
+story_char = []
+for obj in s3.Bucket('aui20222').objects.filter(Prefix="Stories_Char/", Delimiter='/'):
+    story_char.append(obj.key)
+str_aray.append(story_char)
+
+story_place = []
+for obj in s3.Bucket('aui20222').objects.filter(Prefix="Stories_Place/", Delimiter='/'):
+    story_place.append(obj.key)
+str_aray.append(story_place)
+
+story_adv = []
+for obj in s3.Bucket('aui20222').objects.filter(Prefix="Stories_Adv/", Delimiter='/'):
+    story_adv.append(obj.key)
+str_aray.append(story_adv)
 
 # Initializing flask app
 app = Flask(__name__)
@@ -55,22 +71,27 @@ page = 0
 @socketio.on("connect")
 def connected():
     print('connected')
-    emit("connect", {'keys': list_array[int(page) % 3]}, broadcast=True)
+    emit("connect", {'keys': img_array[int(
+        page) % 3], 'story_keys': str_aray[int(page) % 3]}, broadcast=True)
 
 
 @socketio.on("data")
 def handle_message(data):
-    page = data
     print(data)
     emit("connect", {
-         'keys': list_array[page % 3], 'page': page}, broadcast=True)
+         'keys': img_array[data % 3], 'page': data, 'story_keys': str_aray[int(data) % 3]}, broadcast=True)
 
 
-@socketio.on("disconnect")
+@socketio.on("sess")
+def handle_message2(data):
+    print(data["age"])
+
+
+@ socketio.on("disconnect")
 def disconnected():
     """event listener when client disconnects to the server"""
     print("user disconnected")
-    emit("disconnect", f"user {request.sid} disconnected", broadcast=True)
+    # emit("disconnect", f"user {request.sid} disconnected", broadcast=True)
 
 
 '''
@@ -83,7 +104,7 @@ def get_time():
     return {
         'name': "Mario Rossi",
         "age": "3",
-        "keys": list_array[page % 3],
+        "keys": img_array[page % 3],
         # "subjects": subjects,
         "test_images": [page + 1, page + 2, page + 3],
         "page": page,
@@ -91,11 +112,11 @@ def get_time():
 '''
 
 
-@app.route('/audio', methods=['GET', 'POST'])
+@ app.route('/audio', methods=['GET', 'POST'])
 def get_audio():
     # Returning an api for showing in reactjs
     audio = request.get_json()
-    #print("current page request: " + audio)
+    # print("current page request: " + audio)
     return audio
 
 
@@ -103,18 +124,18 @@ def get_audio():
 def get_ses():
     # Returning an api for showing in reactjs
     body = request.get_json()
-    #print("current page request: " + body)
+    # print("current page request: " + body)
     print(body["age"])
     return(body)
 
 
-@app.route('/add', methods=["POST"], strict_slashes=False)
-@cross_origin()
+@ app.route('/add', methods=["POST"], strict_slashes=False)
+@ cross_origin()
 def request_received():
     return add_session()
 
 
-@app.route('/get', methods=["GET"], strict_slashes=False)
+@ app.route('/get', methods=["GET"], strict_slashes=False)
 def send_settings():
     return sessionManager.get_player_session(request.args.get('code'))
 

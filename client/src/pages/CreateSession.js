@@ -1,8 +1,11 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState,useContext} from "react";
 import APIService from "../components/Server_Connection_API";
 import {useNavigate} from "react-router-dom";
 import { Button } from "@mui/material";
 import { TextareaAutosize } from "@mui/material";
+import Session from "./Session";
+import { io } from "socket.io-client";
+import {socket, SocketContext} from '../components/socketto';
 
 
 
@@ -14,6 +17,7 @@ const CreateSession = (props) => {
     const length = 6;
     var sessionCode = [];
     const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const socket = useContext(SocketContext);
 
     const newSession = () => {
         APIService.OpenSession({sessionCode, settings})
@@ -32,27 +36,24 @@ const CreateSession = (props) => {
     }
 
     function sendSessionInfo(){
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
+            console.log('uoo')
+            socket.emit("sess", {
                 'age': age,
                 'name': names,
                 'setting': settings, })
-        };
-        fetch("/ses?" , requestOptions)
-            .then(response => response.json())
-            .then(data => this.setState({ postId: data.id }));
+            console.log(socket)
+        
     }
 
 
+
     const handleSubmit=(event)=>{
-        
         event.preventDefault();
+        sendSessionInfo();
         sessionCode = generateString(length);
         newSession();
         navigate('/tutorMeeting/'+sessionCode)
-        sendSessionInfo();
+
 
     }
 
@@ -94,7 +95,7 @@ const CreateSession = (props) => {
                 </TextareaAutosize>
                 </section>
                 <Button variant='contained'
-                    className={"Create Session Button"}
+                    className={"Create Session Button"} onClick={handleSubmit}
                     >
                     Create Session
                 </Button>
