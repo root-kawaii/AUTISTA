@@ -17,7 +17,8 @@ s3 = boto3.resource(
 )
 # List of arrays to img_array
 img_array = []
-str_aray = []
+text_aray = []
+audio_array = []
 # Upload
 
 s3.Bucket('aui20222').upload_file(
@@ -45,23 +46,42 @@ for obj in s3.Bucket('aui20222').objects.filter(Prefix="Events/", Delimiter='/')
     events.append(obj.key)
 img_array.append(events)
 
-story_char = []
+
+story_char_audio = []
+story_char_text = []
 for obj in s3.Bucket('aui20222').objects.filter(Prefix="Stories_Char/", Delimiter='/'):
-    story_char.append(obj.key)
-str_aray.append(story_char)
+    body = obj.get()['Body'].read()
+    if(obj.key.endswith('txt')):
+        story_char_text.append(str(body))
+    else:
+        story_char_audio.append(obj.key)
+text_aray.append(story_char_text)
+audio_array.append(story_char_audio)
 
-story_place = []
+story_place_audio = []
+story_place_text = []
 for obj in s3.Bucket('aui20222').objects.filter(Prefix="Stories_Place/", Delimiter='/'):
-    story_place.append(obj.key)
-str_aray.append(story_place)
+    body = obj.get()['Body'].read()
+    if(obj.key.endswith('txt')):
+        story_place_text.append(str(body))
+    else:
+        story_place_audio.append(obj.key)
+text_aray.append(story_place_text)
+audio_array.append(story_place_audio)
 
-story_adv = []
+
+story_adv_audio = []
+story_adv_text = []
 for obj in s3.Bucket('aui20222').objects.filter(Prefix="Stories_Adv/", Delimiter='/'):
-    story_adv.append(obj.key)
-str_aray.append(story_adv)
+    body = obj.get()['Body'].read()
+    if(obj.key.endswith('txt')):
+        story_adv_text.append(str(body))
+    else:
+        story_adv_audio.append(obj.key)
+text_aray.append(story_adv_text)
+audio_array.append(story_adv_audio)
 
 
-print(str_aray[2])
 # Initializing flask app
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -70,21 +90,21 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 page = 0
 
 
-@socketio.on("connect")
+@ socketio.on("connect")
 def connected():
     print('connected')
     emit("connect", {'keys': img_array[int(
-        page) % 3], 'story_keys': str_aray[int(page) % 3]}, broadcast=True)
+        page) % 3], 'story_audio': audio_array[int(page) % 3], 'story_texts': text_aray[int(page) % 3]}, broadcast=True)
 
 
-@socketio.on("data")
+@ socketio.on("data")
 def handle_message(data):
     print(data)
-    emit("connect", {
-         'keys': img_array[data % 3], 'page': data, 'story_keys': str_aray[int(data) % 3]}, broadcast=True)
+    emit("connect", {'keys': img_array[int(
+        data) % 3], 'story_audio': audio_array[int(data) % 3], 'story_texts': text_aray[int(data) % 3]}, broadcast=True)
 
 
-@socketio.on("sess")
+@ socketio.on("sess")
 def handle_message2(data):
     print(data["age"])
 

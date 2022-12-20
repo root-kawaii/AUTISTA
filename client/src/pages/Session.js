@@ -29,7 +29,8 @@ function Session(){
   const [messages, setMessages] = useState({
     page: 0,
     keys: [],
-    str_keys: []
+    audio_keys: [],
+    text_keys: []
   });
   const [pager, setPage] = useState(0)
   const socket = useContext(SocketContext);
@@ -45,12 +46,16 @@ function Session(){
       socket.on("connect", (data) => {
         setMessages({
           keys: data.keys,
-          str_keys : data.story_keys
+          audio_keys : data.story_audio,
+          text_keys: data.story_texts
       });
         });
+
+
         
       }
     
+
     setLoading(true)
     setPullState(false)
   }
@@ -82,6 +87,7 @@ function Session(){
 
   // load initial state
   useEffect(setStates, []);
+
 
 
   return(
@@ -174,15 +180,15 @@ function Session(){
                     ></img>
                   </div>
                   <div className="column">
-                    <text src={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.str_keys[2 * pick + 2]}>
-                    </text>
+                      <text>
+                        {messages.text_keys[pick]}
+                      </text>
                     </div>
                 </div>
                 <div className="row">
                     <AudioPlayer
                         url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.str_keys[2 * pick + 1]}
+                        messages.audio_keys[pick]}
                     />
                 </div>
                 <div className="row">
