@@ -50,20 +50,16 @@ function Session(){
           text_keys: data.story_texts
       });
         });
-
-
-        
       }
     
-
     setLoading(true)
     setPullState(false)
   }
 
 
   const progress = () =>{
-    console.log(messages)
-    setPage(pager==0 ? 1 : pager + 1)
+    console.log(pager)
+    setPage(pager + 1)
     console.log(pager)
     socket.emit("data",pager);
   }
@@ -188,7 +184,7 @@ function Session(){
                 <div className="row">
                     <AudioPlayer
                         url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.audio_keys[pick]}
+                        messages.audio_keys[pick+1]}
                     />
                 </div>
                 <div className="row">

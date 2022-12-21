@@ -93,15 +93,16 @@ page = 0
 @ socketio.on("connect")
 def connected():
     print('connected')
-    emit("connect", {'keys': img_array[int(
-        page) % 3], 'story_audio': audio_array[int(page) % 3], 'story_texts': text_aray[int(page) % 3]}, broadcast=True)
+    print('broiasjasdfioas')
+    emit("connect", {'keys': img_array[0], 'story_audio': audio_array[0],
+         'story_texts': text_aray[0]}, broadcast=True)
 
 
 @ socketio.on("data")
 def handle_message(data):
     print(data)
-    emit("connect", {'keys': img_array[int(
-        data) % 3], 'story_audio': audio_array[int(data) % 3], 'story_texts': text_aray[int(data) % 3]}, broadcast=True)
+    emit("connect", {'keys': img_array[
+        (data + 1) % 3], 'story_audio': audio_array[(data + 1) % 3], 'story_texts': text_aray[(data + 1) % 3]}, broadcast=True)
 
 
 @ socketio.on("sess")
