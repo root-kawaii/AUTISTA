@@ -14,7 +14,7 @@ import TextToSpeech from "./AudioUtilities/TextToSpeech";
 import Settings from "./pages/Settings";
 import Session from "./pages/Session";
 import {SocketContext, socket} from './components/socketto';
-
+import TestUI from "./pages/TestUI";
 
 
 
@@ -48,6 +48,8 @@ function App() {
                       <Route path="/join" element={<JoinSession />} />
                       <Route path="/create" element={<CreateSession />} />
                       <Route path="/tutorMeeting/:sessionCode" element={<TutorMeeting />} />
+                      <Route path="/test" element={<TestUI />} />
+
 
                        {/*<Route path="/test" element={<TextToSpeech banana />} />*/}
                       <Route path="/test" element={<Settings/>} />
