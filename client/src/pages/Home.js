@@ -14,14 +14,18 @@ function Home(){
     navigate('/join');
   };
 
-
+    const navigateCreate = () => {
+    // 👇️ navigate to /
+    navigate('/create');
+  };
 
 
   return(
       <div className="Home-header">
-        <text>Benvenuti al progetto Commutti II</text>
+        <text>Benvenuti al progetto Comutti II</text>
         <div className="buttons">
           <Button onClick={navigateJoin} variant='contained'>Join</Button>
+            <Button onClick={navigateCreate} variant='contained'>Create</Button>
         </div>
       </div>
   )

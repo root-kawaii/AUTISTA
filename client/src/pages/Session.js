@@ -95,8 +95,6 @@ function Session(){
               <h2>loading... </h2>
             ) : isSelection ? (
               <>
-                <p>name: {data.name}</p>
-                <p>age: {data.age}</p>
                 <div className="row">
                   <div className="column">
                     <img

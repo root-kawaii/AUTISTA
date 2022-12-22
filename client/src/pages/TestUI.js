@@ -21,6 +21,7 @@ import ball from '../Assets/Places/index.jpg';
 import wave from '../Assets/Events/15.png';
 import fidel from '../Assets/Events/15.png';
 import iusearchbtw from '../Assets/Events/wallp.png';
+import {ButtonBase} from "@mui/material";
 
 
 
@@ -81,7 +82,6 @@ function TestUI(){
     set = pages[setNumber];
   }
 
-
   const progress = () =>{
     console.log(pager)
     setPage(pager + 1)
@@ -131,6 +131,7 @@ function TestUI(){
                       src={dino}
                       alt="Immagine 1"
                     ></img>
+
                   </div>
                   <div className="column">
                     <img
@@ -151,7 +152,6 @@ function TestUI(){
                         setIsSelection(false);
                         setIsLoading(false);
                         setPick(2);
-
                       }}
                       src={rocket}
                       alt="Immagine 3"
@@ -172,13 +172,15 @@ function TestUI(){
               </>
             ) : (
               <>
-                <div className="row">
-                  <div className="column">
+                {/*chosen image displayed */}
+
+                  <div className="row">
+                    <div className="chosenImageColumn">
                     <img
                       onClick={() => {
-                        progress();
+                        //Add animations
+                        progress(); //TODO Progress only if correct word is said
                         setIsSelection(true);
-                        chosenImage(pick);
                       }}
                       src={
                         picked
@@ -186,6 +188,11 @@ function TestUI(){
                       alt="Immagine 1"
                     ></img>
                   </div>
+                  <div className="row">
+
+                  </div>
+                </div>
+                <div className="row">
                   <div className="column">
                       <text>
                         {messages.text_keys[pick]}

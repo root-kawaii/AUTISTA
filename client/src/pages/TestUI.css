@@ -13,7 +13,7 @@
   }
 }
 
-.TestUI_header {
+.TestUI-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -45,6 +45,20 @@
 
 .column {
   flex: 33.33%;
+  padding: 5px;
+}
+
+.chosenImageColumn{
+  position: absolute;
+  left: 15px;
+  flex: 50%;
+  padding: 5px;
+}
+
+.chosenImageStoryPanel{
+  position: absolute;
+  right: 15px;
+  flex: 50%;
   padding: 5px;
 }
 
