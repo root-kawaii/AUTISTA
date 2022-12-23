@@ -5,11 +5,16 @@ import { Button } from '@mui/material';
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 const serverURL = "/audio"
 
+
+
 class AudioRecorder extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       isRecording: false,
+
+        blob: null,
+
       blobURL: '',
       isBlocked: false,
       isSent: false
@@ -19,15 +24,29 @@ class AudioRecorder extends React.Component {
   // TO IMPLEMENT:
   //     FUNCTION TO SEND RECORDED AUDIO TO SERVER
   sendAudioToServer = () => {
-    this.setState(this.setState({ isSent: true }))
+    this.setState({ isSent: true })
 
-    fetch(serverURL, {
-    
-       method: 'POST',
-       mode: 'cors',        //this depends on the port used by the React app and server
-       body: JSON.stringify(this.blobURL)
-    
-     })
+    // fetch(serverURL, {
+    //
+    //    method: 'POST',
+    //    // mode: 'cors',        //this depends on the port used by the React app and server
+    //    // body: JSON.stringify(this.blobURL)
+    //    //  body : this.state.blob,
+    //   files: this.state.blob
+    //
+    //  })
+
+
+      var xhr=new XMLHttpRequest();
+      // xhr.onload=function(e) {
+      //     if(this.readyState === 4) {
+      //         console.log("Server returned: ",e.target.responseText);
+      //     }
+      // };
+      var fd=new FormData();
+      fd.append("audio_data",this.state.blob);
+      xhr.open("POST",serverURL,true);
+      xhr.send(fd);
 
   }
 
@@ -35,6 +54,7 @@ class AudioRecorder extends React.Component {
     if (this.state.isBlocked) {
       console.log('Permission Denied');
     } else {
+        this.setState({ isSent: false })
       Mp3Recorder
         .start()
         .then(() => {
@@ -49,8 +69,11 @@ class AudioRecorder extends React.Component {
       .getMp3()
       .then(([buffer, blob]) => {
         const blobURL = URL.createObjectURL(blob)
+          this.setState({ blob: blob });
         this.setState({ blobURL, isRecording: false });
       }).then(this.sendAudioToServer).catch((e) => console.log(e));
+
+      console.log(this.state.blobURL)
   };
 
   componentDidMount() {
