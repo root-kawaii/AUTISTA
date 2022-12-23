@@ -31,6 +31,14 @@ class AudioRecorder extends React.Component {
 
   }
 
+  changeState = () =>{
+      if(!this.state.isRecording){
+          this.start;
+      }else{
+          this.stop;
+      }
+  }
+
   start = () => {
     if (this.state.isBlocked) {
       console.log('Permission Denied');
@@ -71,8 +79,13 @@ class AudioRecorder extends React.Component {
         // if you use something different from "className=App", the recording set is rendered differently
       <div className="App">
         <header className="App-header">
-          <Button variant='contained' onClick={this.start} disabled={this.state.isRecording}>Record</Button>
-          <Button variant='contained' onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
+            <IconButton aria-label = "Record">
+                <MicIcon onClick={this.changeState} disabled={this.state.isRecording}>Record</MicIcon>
+            </IconButton>
+            {/*
+                <Button variant='contained' onClick={this.changeState} disabled={this.state.isRecording}>Record</Button>
+                <Button variant='contained' onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
+            */}
           <audio src={this.state.blobURL} controls="controls" />
           {/*just to check if the sendAudioToServer function is called*/}
           <Button variant='contained' disabled={this.state.isSent}>SENT</Button>

@@ -1,6 +1,8 @@
 import React from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
 import { Button } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import MicIcon from '@mui/icons-material/Mic';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 const serverURL = "/audio"
@@ -15,6 +17,29 @@ class AudioRecorder extends React.Component {
       isSent: false
     };
   }
+
+  //Made this function to make only one button. The function uses the same code of .start and .stop
+  changeState = () =>{
+      if(!this.state.isRecording){
+          if (this.state.isBlocked) {
+                console.log('Permission Denied');
+          } else {
+                Mp3Recorder
+                .start()
+                .then(() => {
+                this.setState({ isRecording: true });
+          }).catch((e) => console.error(e));
+    }
+      }else{
+          Mp3Recorder
+              .stop()
+              .getMp3()
+              .then(([buffer, blob]) => {
+                  const blobURL = URL.createObjectURL(blob)
+                  this.setState({ blobURL, isRecording: false });
+              }).then(this.sendAudioToServer).catch((e) => console.log(e));
+      }
+  };
 
   // TO IMPLEMENT:
   //     FUNCTION TO SEND RECORDED AUDIO TO SERVER
@@ -71,8 +96,17 @@ class AudioRecorder extends React.Component {
         // if you use something different from "className=App", the recording set is rendered differently
       <div className="App">
         <header className="App-header">
-          <Button variant='contained' onClick={this.start} disabled={this.state.isRecording}>Record</Button>
-          <Button variant='contained' onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
+          <IconButton
+              variant="contained"
+              aria-label = "Record"
+              size="large"
+              color={this.state.isRecording === true ? "error" : "success"}>
+                <MicIcon onClick={this.changeState} disabled={this.state.isRecording}>Record</MicIcon>
+            </IconButton>
+            {/*
+                <Button variant='contained' onClick={this.changeState} disabled={this.state.isRecording}>Record</Button>
+                <Button variant='contained' onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
+            */}
           <audio src={this.state.blobURL} controls="controls" />
           {/*just to check if the sendAudioToServer function is called*/}
           <Button variant='contained' disabled={this.state.isSent}>SENT</Button>
