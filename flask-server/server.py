@@ -134,13 +134,29 @@ def get_time():
     }
 '''
 
-
+import os
+import time
+from pygame import mixer
 @ app.route('/audio', methods=['GET', 'POST'])
 def get_audio():
-    # Returning an api for showing in reactjs
-    audio = request.get_json()
-    # print("current page request: " + audio)
-    return audio
+    print(audio_array)
+    audio = request.files['audio_data']
+
+    # test audio received
+    audioFileName = "test.mp3"
+    audio.save(audioFileName)
+    mixer.init()
+    mixer.music.load(audioFileName)
+    mixer.music.play()
+    while mixer.music.get_busy():
+        time.sleep(0.5)
+    mixer.quit()
+    os.remove(audioFileName)
+
+    audio_array.append(audio)
+    print(audio_array)
+
+    return "audio ok"
 
 
 @ app.route('/ses', methods=['GET', 'POST'])
