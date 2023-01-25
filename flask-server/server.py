@@ -1,4 +1,6 @@
 import datetime
+
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 import json
@@ -134,29 +136,51 @@ def get_time():
     }
 '''
 
-import os
-import time
-from pygame import mixer
 @ app.route('/audio', methods=['GET', 'POST'])
 def get_audio():
     print(audio_array)
     audio = request.files['audio_data']
 
-    # test audio received
-    audioFileName = "test.mp3"
-    audio.save(audioFileName)
-    mixer.init()
-    mixer.music.load(audioFileName)
-    mixer.music.play()
-    while mixer.music.get_busy():
-        time.sleep(0.5)
-    mixer.quit()
-    os.remove(audioFileName)
-
-    audio_array.append(audio)
-    print(audio_array)
-
+    save_audio(audio)
     return "audio ok"
+
+
+import os
+import time
+from pygame import mixer
+import shutil
+def save_audio(audio):
+    createAudioFolder()
+    currentTime = time.localtime()
+    audioName = time.strftime("%Y-%d-%m_%H.%M.%S", currentTime) + '.mp3'
+    folderName = getAudiosPath()
+    name = os.path.join(folderName, audioName)
+    audio.save(name)
+
+    # just to test if the audio is received correctly
+
+    # mixer.init()
+    # mixer.music.load(name)
+    # mixer.music.play()
+    # while mixer.music.get_busy():
+    #     time.sleep(0.5)
+    # mixer.quit()
+
+def createAudioFolder():
+    name = getAudiosPath()
+    if not os.path.exists(name):
+        os.mkdir(name)
+
+def deleteAudios():
+    name = getAudiosPath()
+    if os.path.exists(name):
+        shutil.rmtree(name)
+
+def getAudiosPath():
+    path = os.getcwd()
+    folder = 'Recordings'
+    name = os.path.join(path, folder)
+    return name
 
 
 @ app.route('/ses', methods=['GET', 'POST'])
