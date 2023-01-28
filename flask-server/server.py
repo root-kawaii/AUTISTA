@@ -138,6 +138,7 @@ def get_time():
 def get_audio():
     audio = request.files['audio_data']
     imageName = request.form['image_name']
+    imageName = deriveNameFromPath(imageName)
     save_audio(audio, imageName)
     return "audio received"
 
@@ -161,6 +162,11 @@ def save_audio(audio, imageName):
     # while mixer.music.get_busy():
     #     time.sleep(0.5)
     # mixer.quit()
+
+def deriveNameFromPath(path):
+    image = path.split('/')[-1]
+    name = image.split('.')[0]
+    return name
 
 def createAudioFolder():
     name = getAudiosPath()
