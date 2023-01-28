@@ -208,7 +208,7 @@ function TestUI(){
                     */}
                 </div>
                 <div className="row">
-                    <AudioRecorder />
+                    {/* <AudioRecorder /> */}
                 </div>
                 <div className="row">
                     <Button variant="contained" onClick={navigateCreation}>Esci</Button>

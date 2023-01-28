@@ -8,6 +8,8 @@ import "../App.css";
 import WebSocketCall from "../components/WebSocketCall";
 import { io } from "socket.io-client";
 import {socket, SocketContext} from '../components/socketto';
+import giffo from '../Assets/principe.gif'
+import giffo2 from '../Assets/space.gif'
 
 
 
@@ -159,26 +161,17 @@ function Session(){
               
                 <p>name: {data.name}</p>
                 <p>age: {data.age}</p>
-                <div className="row">
-                  <div className="column">
-                    <img
-                      onClick={() => {
-                        progress();
-                        setIsSelection(true);
-                      }}
-                      src={
-                        "https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.keys[pick + 1]
-                      }
-                      alt="Immagine 1"
-                    ></img>
-                  </div>
+                {/* <div className="row"> */}
+                  {/* <div className="column"> */}
+                  <img src={giffo2} alt='wow'></img>
+                  <img src={giffo} class='over' alt='wow'></img>
+                  {/* </div> */}
                   <div className="column">
                       <text>
                         {messages.text_keys[pick]}
                       </text>
                     </div>
-                </div>
+                {/* </div> */}
                 <div className="row">
                     <AudioPlayer
                         url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
@@ -186,7 +179,7 @@ function Session(){
                     />
                 </div>
                 <div className="row">
-                    <AudioRecorder />
+                     {/* <AudioRecorder /> */}
                 </div>
                 <div className="row">
                     <Button variant="contained" onClick={navigateCreation}>Esci</Button>

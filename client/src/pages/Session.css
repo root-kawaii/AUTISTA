@@ -52,5 +52,17 @@
 img {
   height: 400px;
   width: 400px;
+  position: absolute;
+  top: 250px;
+  left: 50px;
   /* background-color: powderblue; */
 }
+
+.over{
+  height: 500px;
+  width: 400px;
+  position: absolute;
+  top: 250px;
+  left: 50px;
+}
+
