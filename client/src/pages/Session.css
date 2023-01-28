@@ -53,8 +53,8 @@
   height: 400px;
   width: 400px;
   position: absolute;
-  top: 250px;
-  left: 50px;
+  top: 150px;
+  left: 80px;
   /* background-color: powderblue; */
 }
 
@@ -62,17 +62,17 @@
   height: 400px;
   width: 400px;
   position: absolute;
-  top: 250px;
-  left: 50px;
+  top: 150px;
+  left: 650px;
   /* background-color: powderblue; */
 }
 
-.imgRigth {
+.imgRight {
   height: 400px;
   width: 400px;
   position: absolute;
-  top: 250px;
-  left: 50px;
+  top: 150px;
+  right: 80px;
   /* background-color: powderblue; */
 }
 

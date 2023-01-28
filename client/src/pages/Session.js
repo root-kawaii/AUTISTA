@@ -120,7 +120,6 @@ function Session(){
               <h2>loading... </h2>
             ) : isSelection ? (
               <>
-                <div className="row">
                     <img
                       onClick={() => {
                         setIsLoading(true);
@@ -131,6 +130,7 @@ function Session(){
                         src={online ? ("https://aui20222.s3.eu-central-1.amazonaws.com/" +
                         messages.keys[1] ):(dino)}
                       alt="Immagine 1"
+                      className="imgLeft"
                     ></img>
                     <img
                       onClick={() => {
@@ -144,6 +144,7 @@ function Session(){
                         messages.keys[2]):(princess)
                       }
                       alt="Immagine 2"
+                      className="imgCentral"
                     ></img>
                     <img
                       onClick={() => {
@@ -156,8 +157,8 @@ function Session(){
                         messages.keys[3]):(rocket)
                       }
                       alt="Immagine 3"
+                      className="imgRight"
                     ></img>
-                </div>
                 <div className="row">
                     <Button variant="contained" onClick={navigateCreation}>Esci</Button>
                 </div>
