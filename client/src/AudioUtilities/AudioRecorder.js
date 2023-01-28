@@ -12,54 +12,27 @@ class AudioRecorder extends React.Component {
     super(props);
     this.state = {
       isRecording: false,
+      blob: null,
       blobURL: '',
       isBlocked: false,
       isSent: false
     };
   }
 
-  //Made this function to make only one button. The function uses the same code of .start and .stop
-  changeState = () =>{
-      if(!this.state.isRecording){
-          if (this.state.isBlocked) {
-                console.log('Permission Denied');
-          } else {
-                Mp3Recorder
-                .start()
-                .then(() => {
-                this.setState({ isRecording: true });
-          }).catch((e) => console.error(e));
-    }
-      }else{
-          Mp3Recorder
-              .stop()
-              .getMp3()
-              .then(([buffer, blob]) => {
-                  const blobURL = URL.createObjectURL(blob)
-                  this.setState({ blobURL, isRecording: false });
-              }).then(this.sendAudioToServer).catch((e) => console.log(e));
-      }
-  };
-
-  // TO IMPLEMENT:
-  //     FUNCTION TO SEND RECORDED AUDIO TO SERVER
   sendAudioToServer = () => {
-    this.setState(this.setState({ isSent: true }))
-
-    fetch(serverURL, {
-    
-       method: 'POST',
-       mode: 'cors',        //this depends on the port used by the React app and server
-       body: JSON.stringify(this.blobURL)
-    
-     })
-
+      this.setState({ isSent: true })
+      var xhr=new XMLHttpRequest();
+      var fd=new FormData();
+      fd.append("audio_data",this.state.blob);
+      xhr.open("POST",serverURL,true);
+      xhr.send(fd);
   }
 
-  start = () => {
+  startRecording = () => {
     if (this.state.isBlocked) {
       console.log('Permission Denied');
     } else {
+        this.setState({ isSent: false })
       Mp3Recorder
         .start()
         .then(() => {
@@ -68,14 +41,25 @@ class AudioRecorder extends React.Component {
     }
   };
 
-  stop = () => {
+  stopRecording = () => {
     Mp3Recorder
       .stop()
       .getMp3()
       .then(([buffer, blob]) => {
         const blobURL = URL.createObjectURL(blob)
+          this.setState({ blob: blob });
         this.setState({ blobURL, isRecording: false });
       }).then(this.sendAudioToServer).catch((e) => console.log(e));
+
+      console.log(this.state.blobURL)
+  };
+
+  changeState = () =>{
+      if(!this.state.isRecording){
+          this.startRecording()
+      }else{
+          this.stopRecording()
+      }
   };
 
   componentDidMount() {

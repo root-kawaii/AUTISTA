@@ -137,10 +137,45 @@ def get_time():
 
 @ app.route('/audio', methods=['GET', 'POST'])
 def get_audio():
-    # Returning an api for showing in reactjs
-    audio = request.get_json()
-    # print("current page request: " + audio)
-    return audio
+    audio = request.files['audio_data']
+    save_audio(audio)
+
+import os
+import time
+from pygame import mixer
+import shutil
+def save_audio(audio):
+    createAudioFolder()
+    currentTime = time.localtime()
+    audioName = time.strftime("%Y-%d-%m_%H.%M.%S", currentTime) + '.mp3'
+    folderName = getAudiosPath()
+    name = os.path.join(folderName, audioName)
+    audio.save(name)
+
+    # uncomment to test if the audio is received correctly
+
+    # mixer.init()
+    # mixer.music.load(name)
+    # mixer.music.play()
+    # while mixer.music.get_busy():
+    #     time.sleep(0.5)
+    # mixer.quit()
+
+def createAudioFolder():
+    name = getAudiosPath()
+    if not os.path.exists(name):
+        os.mkdir(name)
+
+def deleteAudios():
+    name = getAudiosPath()
+    if os.path.exists(name):
+        shutil.rmtree(name)
+
+def getAudiosPath():
+    path = os.getcwd()
+    folder = 'Recordings'
+    name = os.path.join(path, folder)
+    return name
 
 
 @ app.route('/ses', methods=['GET', 'POST'])
