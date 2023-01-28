@@ -49,7 +49,25 @@
 }
 
 
-img {
+.imgLeft {
+  height: 400px;
+  width: 400px;
+  position: absolute;
+  top: 250px;
+  left: 50px;
+  /* background-color: powderblue; */
+}
+
+.imgCentral {
+  height: 400px;
+  width: 400px;
+  position: absolute;
+  top: 250px;
+  left: 50px;
+  /* background-color: powderblue; */
+}
+
+.imgRigth {
   height: 400px;
   width: 400px;
   position: absolute;

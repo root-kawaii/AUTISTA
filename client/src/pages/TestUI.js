@@ -10,17 +10,17 @@ import { io } from "socket.io-client";
 import {socket, SocketContext} from '../components/socketto';
 
 //import images
-import dino from '../Assets/Subjects/dino_AUI.png';
-import prince from '../Assets/Subjects/prince_AUI.jpg';
-import rocket from '../Assets/Subjects/rocket.png';
+import dino from '../Assets/Subjects/dino_AUI_old.png';
+import prince from '../Assets/Subjects/prince_AUI_old.jpg';
+import rocket from '../Assets/Subjects/Rocket_old.png';
 
-import penguin from '../Assets/Places/14.png';
-import archer from '../Assets/Places/archer_big.png';
-import ball from '../Assets/Places/index.jpg';
+import penguin from '../Assets/Events/Penguin_old.png';
+import archer from '../Assets/Places/Archer_old.png';
+import ball from '../Assets/Places/Basketball_old.jpg';
 
-import wave from '../Assets/Events/15.png';
-import fidel from '../Assets/Events/15.png';
-import iusearchbtw from '../Assets/Events/wallp.png';
+import wave from '../Assets/Events/Wave_old.png';
+import fidel from '../Assets/Events/Wave_old.png';
+import iusearchbtw from '../Assets/Places/I_Use_Arch_BTW_old.png';
 import {ButtonBase} from "@mui/material";
 
 

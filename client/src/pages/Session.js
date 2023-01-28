@@ -8,11 +8,36 @@ import "../App.css";
 import WebSocketCall from "../components/WebSocketCall";
 import { io } from "socket.io-client";
 import {socket, SocketContext} from '../components/socketto';
-import giffo from '../Assets/principe.gif'
-import giffo2 from '../Assets/space.gif'
 
 
 
+//#region MediaImport
+//----Import section for images----//
+//Import gifs
+import princeGif from '../Assets/Gifs/principe.gif'
+import spaceGif from '../Assets/Gifs/space.gif'
+import dinoGif from '../Assets/Gifs/dino.gif'
+import wizardGif from '../Assets/Gifs/mago.gif'
+import princessGif from '../Assets/Gifs/princess.gif'
+import rocketGif from '../Assets/Gifs/razzo.gif'
+
+
+//import main images
+import rocket from '../Assets/Subjects/Razzo0.png'
+import dino from '../Assets/Subjects/Dinosauro0.png'
+import princess from '../Assets/Subjects/Principessa0.png'
+
+
+//import sceneries
+import space from '../Assets/Places/Spazio0.png'
+import arch from '../Assets/Places/I_Use_Arch_BTW_old.png'
+import castle from '../Assets/Places/Castello0.png'
+
+//import secondary characters
+import treasure from '../Assets/Events/TreasureMap.png'
+//TODO add missing images
+
+//#endregion
 
 function Session(){
 
@@ -22,11 +47,11 @@ function Session(){
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isSelection, setIsSelection] = useState(true);
-  const [err, setErr] = useState("");
   const [pick, setPick] = useState(0);
   const [socketInstance, setSocketInstance] = useState("  ");
   const [loading, setLoading] = useState(false);
-
+  const [online, setOnline] = useState("");
+  const [err, setErr] = useState("");
   const [hastoPull,setPullState] = useState(true)
   const [messages, setMessages] = useState({
     page: 0,
@@ -68,8 +93,6 @@ function Session(){
 
 
   const endConnection = () => {
-
-
     return function cleanup() {
       socket.disconnect();
     };
@@ -98,7 +121,6 @@ function Session(){
             ) : isSelection ? (
               <>
                 <div className="row">
-                  <div className="column">
                     <img
                       onClick={() => {
                         setIsLoading(true);
@@ -106,14 +128,10 @@ function Session(){
                         setIsLoading(false);
                         setPick(0);
                       }}
-                      src={
-                        "https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.keys[1]
-                      }
+                        src={online ? ("https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                        messages.keys[1] ):(dino)}
                       alt="Immagine 1"
                     ></img>
-                  </div>
-                  <div className="column">
                     <img
                       onClick={() => {
                         setIsLoading(true);
@@ -121,14 +139,12 @@ function Session(){
                         setIsLoading(false);
                         setPick(1);
                       }}
-                      src={
+                      src={ online ? (
                         "https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.keys[2]
+                        messages.keys[2]):(princess)
                       }
                       alt="Immagine 2"
                     ></img>
-                  </div>
-                  <div className="column">
                     <img
                       onClick={() => {
                         setIsLoading(true);
@@ -136,13 +152,11 @@ function Session(){
                         setIsLoading(false);
                         setPick(2);
                       }}
-                      src={
-                        "https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.keys[3]
+                      src={ online ? ("https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                        messages.keys[3]):(rocket)
                       }
                       alt="Immagine 3"
                     ></img>
-                  </div>
                 </div>
                 <div className="row">
                     <Button variant="contained" onClick={navigateCreation}>Esci</Button>
@@ -163,8 +177,8 @@ function Session(){
                 <p>age: {data.age}</p>
                 {/* <div className="row"> */}
                   {/* <div className="column"> */}
-                  <img src={giffo2} alt='wow'></img>
-                  <img src={giffo} class='over' alt='wow'></img>
+                  <img src={spaceGif} alt='wow'></img>
+                  <img src={princeGif} class='over' alt='wow'></img>
                   {/* </div> */}
                   <div className="column">
                       <text>
