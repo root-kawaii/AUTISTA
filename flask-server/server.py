@@ -147,13 +147,29 @@ import os
 import time
 from pygame import mixer
 import shutil
+import whisper
+
+model = whisper.load_model("small")
+
 def save_audio(audio, imageName):
     createAudioFolder()
     currentTime = time.localtime()
-    audioName = time.strftime("%Y-%d-%m_%H.%M.%S_", currentTime) + imageName + '.mp3'
+    fileName = time.strftime("%Y-%d-%m_%H.%M.%S_", currentTime) + imageName 
+    audioName = fileName + '.mp3'
     folderName = getAudiosPath()
-    name = os.path.join(folderName, audioName)
-    audio.save(name)
+    name_audio = os.path.join(folderName, audioName)
+    audio.save(name_audio)
+    print('Inference...')
+    result = model.transcribe(name_audio)
+    textName = fileName + '.txt'
+    name_text = os.path.join(folderName, textName)
+    f = open(name_text, "w")
+    print('Writing...')
+    f.write(result["text"])
+    f.close()
+    print('Done!')
+
+
 
     # uncomment to test if the audio is received correctly
 
