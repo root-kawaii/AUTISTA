@@ -20,6 +20,8 @@ import dinoGif from '../Assets/Gifs/dino.gif'
 import wizardGif from '../Assets/Gifs/mago.gif'
 import princessGif from '../Assets/Gifs/princess.gif'
 import rocketGif from '../Assets/Gifs/razzo.gif'
+import castleGif from '../Assets/Gifs/castle.gif'
+import dragonGif from '../Assets/Gifs/dragon.gif'
 
 
 //import main images
@@ -47,10 +49,11 @@ function Session(){
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isSelection, setIsSelection] = useState(true);
-  const [pick, setPick] = useState(0);
+  const [pickMain, setPickMain] = useState(0);
+  const [pickBackground, setPickBackground] = useState(0);
+  const [pickAdventure, setPickAdventure] = useState(0);
   const [socketInstance, setSocketInstance] = useState("  ");
   const [loading, setLoading] = useState(false);
-  const [online, setOnline] = useState("");
   const [err, setErr] = useState("");
   const [hastoPull,setPullState] = useState(true)
   const [messages, setMessages] = useState({
@@ -62,6 +65,21 @@ function Session(){
   const [pager, setPage] = useState(0)
   const socket = useContext(SocketContext);
   console.log(socket)
+
+  //Online is used to change between local images and server images
+  const [online, setOnline] = useState(false);
+  //animatedMain is used to animate the main character chosen. with true the gif is displayed
+  const [animatedMain, setAnimatedMain] =useState(false);
+  //animatedSecondary is used to animate the secondary character chosen. with true the gif is displayed
+  const [animatedSecondary, setAnimatedSecondary] =useState(false);
+
+  const arrayMain = [dino, princess, rocket];
+  const arrayMainGif = [dinoGif, princessGif, rocketGif];
+  const arrayBackground = [space, castle, space];
+  const arrayBackgroundGif = [spaceGif, castleGif, spaceGif];
+  const arrayAdventure = [treasure, treasure, treasure];
+  const arrayAdventureGif = [treasure, treasure, treasure];
+
 
   
 
@@ -109,6 +127,13 @@ function Session(){
   // load initial state
   useEffect(setStates, []);
 
+  const animateMainImage = () =>{
+    setAnimatedMain(true);
+    setTimeout(() => {
+      setAnimatedMain(false);
+      }, 3000);
+  }
+
 
 
   return(
@@ -125,7 +150,7 @@ function Session(){
                         setIsLoading(true);
                         setIsSelection(false);
                         setIsLoading(false);
-                        setPick(0);
+                        setPickMain(0);
                       }}
                         src={online ? ("https://aui20222.s3.eu-central-1.amazonaws.com/" +
                         messages.keys[1] ):(dino)}
@@ -137,7 +162,7 @@ function Session(){
                         setIsLoading(true);
                         setIsSelection(false);
                         setIsLoading(false);
-                        setPick(1);
+                        setPickMain(1);
                       }}
                       src={ online ? (
                         "https://aui20222.s3.eu-central-1.amazonaws.com/" +
@@ -151,7 +176,7 @@ function Session(){
                         setIsLoading(true);
                         setIsSelection(false);
                         setIsLoading(false);
-                        setPick(2);
+                        setPickMain(2);
                       }}
                       src={ online ? ("https://aui20222.s3.eu-central-1.amazonaws.com/" +
                         messages.keys[3]):(rocket)
@@ -178,19 +203,21 @@ function Session(){
                 <p>age: {data.age}</p>
                 {/* <div className="row"> */}
                   {/* <div className="column"> */}
-                  <img src={spaceGif} alt='wow'></img>
-                  <img src={princeGif} class='over' alt='wow'></img>
+                  <img src={spaceGif} alt='wow' class='background'></img>
+                  <img src={animatedMain?(arrayMainGif[pickMain]):(arrayMain[pickMain])} class='over' alt='wow'
+                    onClick={()=> animateMainImage()}
+                  ></img>
                   {/* </div> */}
                   <div className="column">
                       <text>
-                        {messages.text_keys[pick]}
+                        {messages.text_keys[pickMain]}
                       </text>
                     </div>
                 {/* </div> */}
                 <div className="row">
                     <AudioPlayer
                         url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.audio_keys[pick+1]}
+                        messages.audio_keys[pickMain+1]}
                     />
                 </div>
                 <div className="row">

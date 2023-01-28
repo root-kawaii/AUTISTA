@@ -80,7 +80,15 @@
   height: 500px;
   width: 400px;
   position: absolute;
-  top: 250px;
+  top: 300px;
   left: 50px;
+}
+
+.background{
+  height: 600px;
+  width: 600px;
+  position: absolute;
+  top: 200px;
+  left: 80px;
 }
 
