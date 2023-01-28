@@ -8,6 +8,7 @@ import "../App.css";
 import WebSocketCall from "../components/WebSocketCall";
 import { io } from "socket.io-client";
 import {socket, SocketContext} from '../components/socketto';
+import next_button from '../Assets/next_button.png'
 
 
 
@@ -103,6 +104,7 @@ function Session(){
 
 
   const progress = () =>{
+    setIsSelection(true);
     console.log(pager)
     setPage(pager + 1)
     console.log(pager)
@@ -203,7 +205,7 @@ function Session(){
                 <p>age: {data.age}</p>
                 {/* <div className="row"> */}
                   {/* <div className="column"> */}
-                  <img src={spaceGif} alt='wow' class='background'></img>
+                  {/* <img src={spaceGif} alt='wow' class='background'></img> */}
                   <img src={animatedMain?(arrayMainGif[pickMain]):(arrayMain[pickMain])} class='over' alt='wow'
                     onClick={()=> animateMainImage()}
                   ></img>
@@ -214,6 +216,7 @@ function Session(){
                       </text>
                     </div>
                 {/* </div> */}
+                <img src={next_button} class='next_button' onClick={progress}></img>
                 <div className="row">
                     <AudioPlayer
                         url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
@@ -223,6 +226,7 @@ function Session(){
                 <div className="row">
                       <AudioRecorder imageName={rocket}/>
                 </div>
+
                 <div className="row">
                     <Button variant="contained" onClick={navigateCreation}>Esci</Button>
                 </div>
