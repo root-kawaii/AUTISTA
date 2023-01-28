@@ -194,7 +194,7 @@ function Session(){
                     />
                 </div>
                 <div className="row">
-                      <AudioRecorder imageName={"imageNameTest"}/>
+                      {/* <AudioRecorder imageName={"imageNameTest"}/> */}
                 </div>
                 <div className="row">
                     <Button variant="contained" onClick={navigateCreation}>Esci</Button>

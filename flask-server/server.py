@@ -84,6 +84,7 @@ audio_array.append(story_adv_audio)
 
 # Initializing flask app
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 page = 0
