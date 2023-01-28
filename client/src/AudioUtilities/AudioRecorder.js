@@ -11,11 +11,12 @@ class AudioRecorder extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      isRecording: false,
-      blob: null,
-      blobURL: '',
-      isBlocked: false,
-      isSent: false
+        isRecording: false,
+        blob: null,
+        blobURL: '',
+        isBlocked: false,
+        isSent: false,
+        imageName : props.imageName
     };
   }
 
@@ -24,6 +25,7 @@ class AudioRecorder extends React.Component {
       var xhr=new XMLHttpRequest();
       var fd=new FormData();
       fd.append("audio_data",this.state.blob);
+      fd.append("image_name",this.state.imageName);
       xhr.open("POST",serverURL,true);
       xhr.send(fd);
   }
