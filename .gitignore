@@ -8,3 +8,4 @@
 .idea/AUTISTA.iml
 .idea/misc.xml
 /flask-server/venv/pyvenv.cfg
+/flask-server/__pycache__
