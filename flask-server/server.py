@@ -138,16 +138,18 @@ def get_time():
 @ app.route('/audio', methods=['GET', 'POST'])
 def get_audio():
     audio = request.files['audio_data']
-    save_audio(audio)
+    imageName = request.form['image_name']
+    save_audio(audio, imageName)
+    return "audio received"
 
 import os
 import time
 from pygame import mixer
 import shutil
-def save_audio(audio):
+def save_audio(audio, imageName):
     createAudioFolder()
     currentTime = time.localtime()
-    audioName = time.strftime("%Y-%d-%m_%H.%M.%S", currentTime) + '.mp3'
+    audioName = time.strftime("%Y-%d-%m_%H.%M.%S_", currentTime) + imageName + '.mp3'
     folderName = getAudiosPath()
     name = os.path.join(folderName, audioName)
     audio.save(name)
