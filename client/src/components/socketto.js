@@ -10,7 +10,7 @@ var connection = io("http://127.0.0.1:5000", {
     },
   });
 
-export const socket = socketio.connect(connection);
+export const socket = socketio.connect('http://127.0.0.1:5000');
 export const SocketContext = React.createContext();
 
 
