@@ -224,7 +224,7 @@ function Session(){
                     />
                 </div>
                 <div className="row">
-                      <AudioRecorder imageName={rocket}/>
+                      <AudioRecorder imageName={arrayMain[pickMain]}/>
                 </div>
 
                 <div className="row">
