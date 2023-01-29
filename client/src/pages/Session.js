@@ -119,7 +119,7 @@ function Session(){
     setPullState(true)
     setLoading(false)
     if (socket) {
-      setOnline('yes')
+      //setOnline('yes')
       socket.on("connect", (data) => {
         setMessages({
           keys: data.keys,
