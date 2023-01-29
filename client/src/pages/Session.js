@@ -1,3 +1,6 @@
+
+
+
 import React, {useEffect, useState,useContext,Text} from "react";
 import "./Session.css";
 import AudioPlayer from "../AudioUtilities/AudioPlayer";
@@ -74,8 +77,7 @@ function Session(){
     page: 0,
     keys: [],
     audio_keys: [],
-    text_keys: [],
-    prev_images: ['']
+    text_keys: []
   });
   const [pager, setPage] = useState(0)
   const socket = useContext(SocketContext);
@@ -283,18 +285,15 @@ function Session(){
                 <>
                 <p>name: {data.name}</p>
                 <p>age: {data.age}</p>
-                {/* <div className="row"> */}
-                  {/* <div className="column"> */}
-                  {/* <img src={spaceGif} alt='wow' class='background'></img> */}
-                  {messages.prev_images.length!="placeholder" ? (                  <img src={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.prev_images[0]}></img>):(<text>a</text>)}
-                  {messages.prev_images.length>1 ? (                  <img src={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.prev_images[1]}></img>):(<text>b</text>)}
-                  <img src={animatedMain?(arrayMainGif[pickMain]):(arrayMain[pickMain])} class='over' alt='wow'
-                    onClick={()=> animateMainImage()}
-                  ></img>
-                  {/* </div> */}
-                  <div className="column">
+                {/*First page, there is only the main character*/}
+                {pager === 0 ? (
+                <>
+                    <img src={animatedMain ? (arrayMainGif[pickMain]) : (arrayMain[pickMain])}
+                         className='overLeft'
+                         alt='wow'
+                         onClick={() => animateMainImage()}
+                    ></img>
+                    <div className="column">
                       <text>
                         {messages.text_keys[pickMain]}
                       </text>
@@ -382,3 +381,12 @@ function Session(){
 export default Session;
 
 
+
+
+
+                //  {messages.prev_images.length!="placeholder" ? (                  <img src={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                        // messages.prev_images[0]}></img>):(<text>a</text>)}
+                  // {messages.prev_images.length>1 ? (                  <img src={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                        // messages.prev_images[1]}></img>):(<text>b</text>)}
+                  // <img src={animatedMain?(arrayMainGif[pickMain]):(arrayMain[pickMain])} class='over' alt='wow'
+                    // onClick={()=> animateMainImage()}

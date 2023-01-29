@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, cardActionAreaClasses } from "@mui/material";
 import textToSpeech from "./TextToSpeech";
 import TTS from "./TextToSpeech";
-import booko from '../Assets/book_button.png'
+import booko from '../Assets/UI/book_button.png'
 import "../AudioUtilities/AudioPlayer.css"
 
 const currentBaseUrl = "https://aui20222.s3.eu-central-1.amazonaws.com/";
