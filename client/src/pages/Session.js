@@ -1,6 +1,7 @@
 import React, {useEffect, useState,useContext,Text} from "react";
 import "./Session.css";
 import AudioPlayer from "../AudioUtilities/AudioPlayer";
+import "../AudioUtilities/AudioPlayer.css";
 import AudioRecorder from "../AudioUtilities/AudioRecorder";
 import Button from '@mui/material/Button';
 import {Routes, Route, useNavigate} from 'react-router-dom';
@@ -8,7 +9,7 @@ import "../App.css";
 import WebSocketCall from "../components/WebSocketCall";
 import { io } from "socket.io-client";
 import {socket, SocketContext} from '../components/socketto';
-import next_button from '../Assets/next_button.png'
+import next_button from '../Assets/UI/next_button.png'
 
 
 
@@ -38,7 +39,12 @@ import castle from '../Assets/Places/Castello0.png'
 
 //import secondary characters
 import treasure from '../Assets/Events/TreasureMap.png'
-//TODO add missing images
+import dragon from '../Assets/Events/Drago1.png'
+import wizard from '../Assets/Events/mago.png'
+
+
+//import UI
+import uiBackground from '../Assets/UI/pink_background_M.png'
 
 //#endregion
 
@@ -50,9 +56,16 @@ function Session(){
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isSelection, setIsSelection] = useState(true);
+
+  //This 3 const are used to store the choice during the game
+  //pickMain saves the main character choice
   const [pickMain, setPickMain] = useState(0);
+  //pickBackground saves the location choice
   const [pickBackground, setPickBackground] = useState(0);
+  //pickAdventure saves the adventure choice
   const [pickAdventure, setPickAdventure] = useState(0);
+
+
   const [socketInstance, setSocketInstance] = useState("  ");
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
@@ -75,13 +88,28 @@ function Session(){
   //animatedSecondary is used to animate the secondary character chosen. with true the gif is displayed
   const [animatedSecondary, setAnimatedSecondary] =useState(false);
 
+  //Arrays used to store all the location.
+  //For the future to automate and randomize the game we just need to populate this arrays with the server generated images
+  //Array containing the 3 main character choices
   const arrayMain = [dino, princess, rocket];
-  const arrayMainGif = [dinoGif, princessGif, rocketGif];
-  const arrayBackground = [space, castle, space];
-  const arrayBackgroundGif = [spaceGif, castleGif, spaceGif];
-  const arrayAdventure = [treasure, treasure, treasure];
-  const arrayAdventureGif = [treasure, treasure, treasure];
 
+  //Array with the gifs of the 3 main character choices
+  const arrayMainGif = [dinoGif, princessGif, rocketGif];
+
+  //Array containing the 3 location choices
+  const arrayBackground = [space, castle, arch];
+
+  //Array with the gifs of the 3 locations choices
+  const arrayBackgroundGif = [spaceGif, castleGif, arch];
+
+  //Array containing the 3 secondary character choices
+  const arrayAdventure = [dragon, treasure, wizard];
+
+  //Array with the gifs of the 3 secondary character choices
+  const arrayAdventureGif = [dragonGif, treasure, wizardGif];
+
+  //Array containing the 3 image arrays. It is used to decide at runtime which images to show according to Pager
+  const arrayImages = [arrayMain, arrayBackground, arrayAdventure];
 
   
 
@@ -133,10 +161,21 @@ function Session(){
   // load initial state
   useEffect(setStates, []);
 
+  //Function called on click to animate the main character image.
+  //Sets the --animatedMain-- variable to true and calls a timeout to turn it back to false.
   const animateMainImage = () =>{
     setAnimatedMain(true);
     setTimeout(() => {
       setAnimatedMain(false);
+      }, 3000);
+  }
+
+    //Function called on click to animate the secondary character image.
+  //Sets the --animatedSecondary-- variable to true and calls a timeout to turn it back to false.
+  const animateSecondaryImage = () =>{
+    setAnimatedSecondary(true);
+    setTimeout(() => {
+      setAnimatedSecondary(false);
       }, 3000);
   }
 
@@ -145,38 +184,60 @@ function Session(){
   return(
       <div className="Session">
           <header className="Session-header">
+            {/*<img src={uiBackground} className="uiBackground"/>*/} {/*TODO fix the background that covers everything except images*/}
             {err ? (
               <h2>{err.message}</h2>
             ) : isLoading ? (
               <h2>loading... </h2>
             ) : isSelection ? (
               <>
+                    <img
+                      onClick={() => {
+                        setIsLoading(true);
+                        setIsSelection(false);
+                        setIsLoading(false);
+                        {/*Based on the iteration the choice is stored in the relative variable.
+                        Pager = 0 character choice --> setPickMain,
+                        Pager = 1 location choice --> setPickBackground,
+                        Pager = 2 adventure (secondary) choice --> setPickAdventure
+                        Sets the relative pick value to the chosen one to be displayed later
+                        */}
+                        pager === 0 ? (setPickMain(0)) :
+                            pager === 1 ? (setPickBackground(0)) :
+                                setPickAdventure(0);
+                      }}
+                      //if the --online-- variable is true the images are fetched from the aws s3 bucket
+                        //if the --online-- variable is false the images are loaded from local storage
+                        src={online ? ("https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                        messages.keys[1] ):(arrayImages[pager][0])}
+                      alt="Immagine 1"
+                      className="imgLeft"
+                    ></img>
                     <AudioPlayer
-                      url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                      messages.audio_keys[pickMain+1]}
+                        url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                        messages.audio_keys[pickMain+1]}
+                        className="buttonLeft"
                     />
                     <img
                       onClick={() => {
                         setIsLoading(true);
                         setIsSelection(false);
                         setIsLoading(false);
-                        setPickMain(0);
+                        {/*Based on the iteration the choice is stored in the relative variable.
+                        Pager = 0 character choice --> setPickMain,
+                        Pager = 1 location choice --> setPickBackground,
+                        Pager = 2 adventure (secondary) choice --> setPickAdventure
+                        Sets the relative pick value to the chosen one to be displayed later
+                        */}
+                        pager === 0 ? (setPickMain(1)) :
+                            pager === 1 ? (setPickBackground(1)) :
+                                setPickAdventure(1);
                       }}
-                        src={online ? ("https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.keys[1] ):(dino)}
-                      alt="Immagine 1"
-                      className="imgLeft"
-                    ></img>
-                    <img
-                      onClick={() => {
-                        setIsLoading(true);
-                        setIsSelection(false);
-                        setIsLoading(false);
-                        setPickMain(1);
-                      }}
+                      //if the --online-- variable is true the images are fetched from the aws s3 bucket
+                        //if the --online-- variable is false the images are loaded from local storage
                       src={ online ? (
                         "https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.keys[2]):(princess)
+                        messages.keys[2]):(arrayImages[pager][1])
                       }
                       alt="Immagine 2"
                       className="imgCentral"
@@ -186,10 +247,20 @@ function Session(){
                         setIsLoading(true);
                         setIsSelection(false);
                         setIsLoading(false);
-                        setPickMain(2);
+                        {/*Based on the iteration the choice is stored in the relative variable.
+                        Pager = 0 character choice --> setPickMain,
+                        Pager = 1 location choice --> setPickBackground,
+                        Pager = 2 adventure (secondary) choice --> setPickAdventure
+                        Sets the relative pick value to the chosen one to be displayed later
+                        */}
+                        pager === 0 ? (setPickMain(2)) :
+                            pager === 1 ? (setPickBackground(2)) :
+                                setPickAdventure(2);
                       }}
+                      //if the --online-- variable is true the images are fetched from the aws s3 bucket
+                        //if the --online-- variable is false the images are loaded from local storage
                       src={ online ? ("https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.keys[3]):(rocket)
+                        messages.keys[3]):(arrayImages[pager][2])
                       }
                       alt="Immagine 3"
                       className="imgRight"
@@ -208,8 +279,8 @@ function Session(){
                 <AudioRecorder /> */}
               </>
             ) : (
-              <>
-              
+                //From here is the code for displaying what the user has chosen during the session
+                <>
                 <p>name: {data.name}</p>
                 <p>age: {data.age}</p>
                 {/* <div className="row"> */}
@@ -228,26 +299,81 @@ function Session(){
                         {messages.text_keys[pickMain]}
                       </text>
                     </div>
-                {/* </div> */}
-                <img src={next_button} class='next_button' onClick={progress}></img>
-                <div className="row">
-                    <AudioPlayer
-                        url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.audio_keys[pickMain+1]}
-                    />
-                </div>
-                <div className="row">
-                      <AudioRecorder imageName={arrayMain[pickMain]}/>
-                </div>
+                    <img src={next_button} class='next_button' onClick={progress}></img>
+                    <div className="row">
+                        <AudioPlayer
+                            url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                            messages.audio_keys[pickMain+1]}
+                        />
+                    </div>
+                    <div className="row">
+                          <AudioRecorder imageName={arrayMain[pickMain]}/>
+                    </div>
+                    <div className="row">
+                        <Button variant="contained" onClick={navigateCreation}>Esci</Button>
+                    </div>
+                </>
+                  ) :
+                pager === 1 ? (
+                <>
+                  {/*Second page, there is the main character on the background*/}
+                  <img src={arrayBackgroundGif[pickBackground]} alt='wow' class='background'></img>
+                    <img src={animatedMain?(arrayMainGif[pickMain]):(arrayMain[pickMain])} class='overLeft' alt='wow'
+                       onClick={()=> animateMainImage()}
+                    ></img>
+                    <div className="column">
+                        <text>
+                          {messages.text_keys[pickBackground]}
+                        </text>
+                      </div>
+                  <img src={next_button} class='next_button' onClick={progress}></img>
+                  <div className="row">
+                      <AudioPlayer
+                          url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                          messages.audio_keys[pickBackground+1]}
+                      />
+                  </div>
+                  <div className="row">
+                        <AudioRecorder imageName={arrayBackground[pickBackground]}/>
+                  </div>
 
-                <div className="row">
-                    <Button variant="contained" onClick={navigateCreation}>Esci</Button>
-                </div>
-                {/* update every click... */}
-                {/* <button onClick={fetchImages}>next page!</button> */}
-              </>
-            )}
-
+                  <div className="row">
+                      <Button variant="contained" onClick={navigateCreation}>Esci</Button>
+                  </div>
+                </>
+                ) : (
+                <>
+                {/*Third page, all three choices are displayed*/}
+                  <img src={arrayBackgroundGif[pickBackground]} alt='wow' className='background'></img>
+                  <img src={animatedMain?(arrayMainGif[pickMain]):(arrayMain[pickMain])} class='overLeft' alt='wow'
+                       onClick={()=> animateMainImage()}
+                  ></img>
+                  <img src={animatedSecondary ? (arrayAdventureGif[pickAdventure]) : (arrayAdventure[pickAdventure])} className='overRight' alt='wow'
+                       onClick={() => animateSecondaryImage()}
+                  ></img>
+                  <div className="column">
+                     <text>
+                       {messages.text_keys[pickAdventure]}
+                     </text>
+                  </div>
+                  <img src={next_button} class='next_button' onClick={progress}></img>
+                  <div className="row">
+                      <AudioPlayer
+                          url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                          messages.audio_keys[pickAdventure+1]}
+                      />
+                  </div>
+                  <div className="row">
+                      <AudioRecorder imageName={arrayAdventure[pickAdventure]}/>
+                  </div>
+                  <div className="row">
+                      <Button variant="contained" onClick={navigateCreation}>Esci</Button>
+                  </div>
+                </>
+                )}
+            </>
+            )
+            }
           </header>
       </div>
   )
