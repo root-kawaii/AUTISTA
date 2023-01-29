@@ -1,6 +1,7 @@
 import React from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
 import { Button } from '@mui/material';
+import booko from '../Assets/UI/book_button.png'
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 const serverURL = "/audio"
@@ -80,7 +81,7 @@ class AudioRecorder extends React.Component {
       <div className="App">
         <header className="App-header">
             <IconButton aria-label = "Record">
-                <MicIcon onClick={this.changeState} disabled={this.state.isRecording}>Record</MicIcon>
+                <img onClick={booko} disabled={this.state.isRecording}>Record</img>
             </IconButton>
             {/*
                 <Button variant='contained' onClick={this.changeState} disabled={this.state.isRecording}>Record</Button>

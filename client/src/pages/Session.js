@@ -120,7 +120,7 @@ function Session(){
     setPullState(true)
     setLoading(false)
     if (socket) {
-      setOnline('yes')
+      setOnline('')
       socket.on("connect", (data) => {
         setMessages({
           keys: data.keys,
@@ -227,8 +227,7 @@ function Session(){
                           transition: { duration: 0.5 },
                         }}>
                     <AudioPlayer
-                        url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.audio_keys[pickMain+1]}
+                        url={"https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dino gentile.mp3"}
                         className = "buttonLeft"
                     />
                   </motion.div>
@@ -261,8 +260,7 @@ function Session(){
                       className="imgCentral"
                     ></motion.img>
                     <AudioPlayer
-                        url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.audio_keys[pickMain+2]}
+                        url={"https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3"}
                         className = "buttonCentral"
                     />
                     <motion.img
@@ -293,8 +291,7 @@ function Session(){
                       className="imgRight"
                     ></motion.img>
                     <AudioPlayer
-                        url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                        messages.audio_keys[pickMain+3]}
+                        url={"https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"}
                         className = "buttonRight"
                     />
                 <div className="row">
@@ -351,8 +348,7 @@ function Session(){
                           transition: { duration: 0.5 },
                         }}>
                         <AudioPlayer
-                            url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                            messages.audio_keys[pickMain+1]}
+                            url={"https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dinosauro.mp3"}
                         />
                         </motion.div>
                     </div>
@@ -391,8 +387,7 @@ function Session(){
                   <img src={next_button} class='next_button' onClick={progress}></img>
                   <div className="row">
                       <AudioPlayer
-                          url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                          messages.audio_keys[pickBackground+1]}
+                          url={"https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dinosauro event.mp3"}
                       />
                   </div>
                   <div className="row">

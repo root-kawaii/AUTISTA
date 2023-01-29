@@ -3,6 +3,9 @@ import MicRecorder from 'mic-recorder-to-mp3';
 import { Button } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import MicIcon from '@mui/icons-material/Mic';
+import mic from '../Assets/UI/mic_icon.png'
+import AudioPlayer from './AudioPlayer';
+import "../AudioUtilities/AudioRecorder.css"
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 const serverURL = "/audio"
@@ -87,15 +90,16 @@ class AudioRecorder extends React.Component {
               aria-label = "Record"
               size="large"
               color={this.state.isRecording === true ? "error" : "success"}>
-                <MicIcon onClick={this.changeState} disabled={this.state.isRecording}>Record</MicIcon>
+              <img class='mic_piccino' src={mic} onClick={this.changeState} disabled={this.state.isRecording}></img>
             </IconButton>
             {/*
                 <Button variant='contained' onClick={this.changeState} disabled={this.state.isRecording}>Record</Button>
                 <Button variant='contained' onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
             */}
-          <audio src={this.state.blobURL} controls="controls" />
+          <IconButton>
+            <audio src={this.state.blobURL} controls="controls" />
+          </IconButton>
           {/*just to check if the sendAudioToServer function is called*/}
-          <Button variant='contained' disabled={this.state.isSent}>SENT</Button>
         </header>
       </div>
     );
