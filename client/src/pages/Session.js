@@ -61,7 +61,8 @@ function Session(){
     page: 0,
     keys: [],
     audio_keys: [],
-    text_keys: []
+    text_keys: [],
+    prev_images: ['']
   });
   const [pager, setPage] = useState(0)
   const socket = useContext(SocketContext);
@@ -88,14 +89,16 @@ function Session(){
     setPullState(true)
     setLoading(false)
     if (socket) {
-  
+      setOnline('yes')
       socket.on("connect", (data) => {
         setMessages({
           keys: data.keys,
           audio_keys : data.story_audio,
-          text_keys: data.story_texts
+          text_keys: data.story_texts,
+          prev_images: data.prev_images
       });
         });
+      console.log(messages.keys[1])
       }
     
     setLoading(true)
@@ -104,11 +107,12 @@ function Session(){
 
 
   const progress = () =>{
+
     setIsSelection(true);
     console.log(pager)
     setPage(pager + 1)
     console.log(pager)
-    socket.emit("data",pager);
+    socket.emit("data",{pager,pickMain});
   }
 
 
@@ -211,6 +215,10 @@ function Session(){
                 {/* <div className="row"> */}
                   {/* <div className="column"> */}
                   {/* <img src={spaceGif} alt='wow' class='background'></img> */}
+                  {messages.prev_images.length!="placeholder" ? (                  <img src={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                        messages.prev_images[0]}></img>):(<text>a</text>)}
+                  {messages.prev_images.length>1 ? (                  <img src={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                        messages.prev_images[1]}></img>):(<text>b</text>)}
                   <img src={animatedMain?(arrayMainGif[pickMain]):(arrayMain[pickMain])} class='over' alt='wow'
                     onClick={()=> animateMainImage()}
                   ></img>

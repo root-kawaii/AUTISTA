@@ -88,6 +88,7 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 page = 0
+selectedImages = []
 
 
 @ socketio.on("connect")
@@ -95,14 +96,18 @@ def connected():
     print('connected')
     print('broiasjasdfioas')
     emit("connect", {'keys': img_array[0], 'story_audio': audio_array[0],
-         'story_texts': text_aray[0]}, broadcast=True)
+         'story_texts': text_aray[0],'prev_images':["placeholder"]}, broadcast=True)
 
 
 @ socketio.on("data")
 def handle_message(data):
-    print(data)
+    print(data["pager"])
+    selectedImages.append(img_array[data["pager"]][data["pickMain"]+1])
+    print(selectedImages)
     emit("connect", {'keys': img_array[
-        (data + 1) % 3], 'story_audio': audio_array[(data + 1) % 3], 'story_texts': text_aray[(data + 1) % 3]}, broadcast=True)
+        (data["pager"] + 1) % 3], 'story_audio': audio_array[(data["pager"] + 1) % 3], 'story_texts': text_aray[(data["pager"] + 1) % 3], 
+        'prev_images': selectedImages}, broadcast=True)
+    
 
 
 @ socketio.on("sess")
@@ -112,6 +117,7 @@ def handle_message2(data):
 
 @ socketio.on("disconnect")
 def disconnected():
+    selectedImages.clear()
     """event listener when client disconnects to the server"""
     print("user disconnected")
     # emit("disconnect", f"user {request.sid} disconnected", broadcast=True)
