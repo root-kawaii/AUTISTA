@@ -449,11 +449,13 @@ function Session() {
                 <Box className="textBox">
                   <text>{messages.text_keys[pickAdventure]}</text>
                 </Box>
-                  <AudioPlayer
+                <AudioPlayer
+                    source={booko}
                     url={
                       "https://aui20222.s3.eu-central-1.amazonaws.com/" +
                       messages.audio_keys[pickAdventure + 1]
                     }
+                    className="storyPanelButton"
                   />
                   <AudioRecorder imageName={arrayAdventure[pickAdventure]} />
                 <img
