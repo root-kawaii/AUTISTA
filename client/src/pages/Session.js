@@ -111,12 +111,14 @@ function Session() {
     if (socket) {
       setOnline("");
       socket.on("connect", (data) => {
-        setMessages({
-          keys: data.keys,
-          audio_keys: data.story_audio,
-          text_keys: data.story_texts,
-          prev_images: data.prev_images,
-        });
+        //TODO: can data be undefined? what is the correct behavior?
+        data &&
+          setMessages({
+            keys: data.keys,
+            audio_keys: data.story_audio,
+            text_keys: data.story_texts,
+            prev_images: data.prev_images,
+          });
       });
       console.log(messages.keys[1]);
     }
@@ -357,7 +359,7 @@ function Session() {
                   onClick={() => animateMainImage()}
                 ></motion.img>
                 <div className="column">
-                  <text>{messages.text_keys[pickMain]}</text>
+                  <p>{messages.text_keys[pickMain]}</p>
                 </div>
                 <motion.img
                   whileHover={{
@@ -365,7 +367,7 @@ function Session() {
                     transition: { duration: 0.5 },
                   }}
                   src={next_button}
-                  class="next_button"
+                  className="next_button"
                   onClick={progress}
                 ></motion.img>
                 <div className="row">
@@ -413,13 +415,13 @@ function Session() {
                 <img
                   src={arrayBackgroundGif[pickBackground]}
                   alt="wow"
-                  class="background"
+                  className="background"
                 ></img>
                 <img
                   src={
                     animatedMain ? arrayMainGif[pickMain] : arrayMain[pickMain]
                   }
-                  class="overLeft"
+                  className="overLeft"
                   alt="wow"
                   onClick={() => animateMainImage()}
                 ></img>
@@ -428,7 +430,7 @@ function Session() {
                 </div>
                 <img
                   src={next_button}
-                  class="next_button"
+                  className="next_button"
                   onClick={progress}
                 ></img>
                 <div className="row">
@@ -462,7 +464,7 @@ function Session() {
                   src={
                     animatedMain ? arrayMainGif[pickMain] : arrayMain[pickMain]
                   }
-                  class="overLeft"
+                  className="overLeft"
                   alt="wow"
                   onClick={() => animateMainImage()}
                 ></img>
@@ -481,7 +483,7 @@ function Session() {
                 </div>
                 <img
                   src={next_button}
-                  class="next_button"
+                  className="next_button"
                   onClick={progress}
                 ></img>
                 <div className="row">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import MicRecorder from "mic-recorder-to-mp3";
 import { Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -10,104 +10,100 @@ import "../AudioUtilities/AudioRecorder.css";
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 const serverURL = "/audio";
 
-class AudioRecorder extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isRecording: false,
-      blob: null,
-      blobURL: "",
-      isBlocked: false,
-      isSent: false,
-      imageName: props.imageName,
-    };
-  }
+const AudioRecorder = ({ imageName }) => {
+  const [state, setState] = useState({
+    isRecording: false,
+    blob: null,
+    blobURL: "",
+    isBlocked: false,
+    isSent: false,
+    imageName: imageName,
+  });
 
-  sendAudioToServer = () => {
-    this.setState({ isSent: true });
+  const sendAudioToServer = () => {
+    setState((state) => ({ ...state, isSent: true }));
     var xhr = new XMLHttpRequest();
     var fd = new FormData();
-    fd.append("audio_data", this.state.blob);
-    fd.append("image_name", this.state.imageName);
+    fd.append("audio_data", state.blob);
+    fd.append("image_name", state.imageName);
     xhr.open("POST", serverURL, true);
     xhr.send(fd);
   };
 
-  startRecording = () => {
-    if (this.state.isBlocked) {
+  const startRecording = () => {
+    if (state.isBlocked) {
       console.log("Permission Denied");
     } else {
-      this.setState({ isSent: false });
+      setState((state) => ({ ...state, isSent: false }));
       Mp3Recorder.start()
         .then(() => {
-          this.setState({ isRecording: true });
+          setState((state) => ({ ...state, isRecording: true }));
         })
         .catch((e) => console.error(e));
     }
   };
 
-  stopRecording = () => {
+  const stopRecording = () => {
     Mp3Recorder.stop()
       .getMp3()
       .then(([buffer, blob]) => {
         const blobURL = URL.createObjectURL(blob);
-        this.setState({ blob: blob });
-        this.setState({ blobURL, isRecording: false });
+        setState((state) => ({ ...state, blob: blob }));
+        setState((state) => ({ ...state, blobURL, isRecording: false }));
       })
-      .then(this.sendAudioToServer)
+      .then(sendAudioToServer)
       .catch((e) => console.log(e));
 
-    console.log(this.state.blobURL);
+    console.log(state.blobURL);
   };
 
-  changeState = () => {
-    if (!this.state.isRecording) {
-      this.startRecording();
+  const changeState = () => {
+    if (!state.isRecording) {
+      startRecording();
     } else {
-      this.stopRecording();
+      stopRecording();
     }
   };
 
-  componentDidMount() {
-    navigator.getUserMedia(
-      { audio: true },
-      () => {
-        console.log("Permission Granted");
-        this.setState({ isBlocked: false });
-      },
-      () => {
-        console.log("Permission Denied");
-        this.setState({ isBlocked: true });
-      }
-    );
-  }
-
-  render() {
-    return (
-      // if you use something different from "className=App", the recording set is rendered differently
-      <div className="App">
-        <IconButton
-          variant="contained"
-          aria-label="Record"
-          size="large"
-          color={this.state.isRecording === true ? "error" : "success"}
-        >
-          <img
-            class="mic_piccino"
-            src={mic}
-            onClick={this.changeState}
-            disabled={this.state.isRecording}
-          ></img>
-        </IconButton>
-        {/*
-                <Button variant='contained' onClick={this.changeState} disabled={this.state.isRecording}>Record</Button>
-                <Button variant='contained' onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
-            */}
-        <AudioPlayer url={this.state.blobURL} source={mic} />
-        {/*just to check if the sendAudioToServer function is called*/}
-      </div>
-    );
-  }
-}
+  useEffect(
+    () =>
+      navigator.getUserMedia(
+        { audio: true },
+        () => {
+          console.log("Permission Granted");
+          setState((state) => ({ ...state, isBlocked: false }));
+        },
+        () => {
+          console.log("Permission Denied");
+          setState((state) => ({ ...state, isBlocked: true }));
+        }
+      ),
+    []
+  );
+  return (
+    // if you use something different from "className=App", the recording set is rendered differently
+    <div className="App">
+      <IconButton
+        variant="contained"
+        aria-label="Record"
+        size="large"
+        color={state.isRecording === true ? "error" : "success"}
+        onClick={changeState}
+      >
+        <img
+          className="mic_piccino"
+          src={mic}
+          disabled={state.isRecording}
+        ></img>
+      </IconButton>
+      {/*
+        <Button variant='contained' onClick={changeState} disabled={state.isRecording}>Record</Button>
+        <Button variant='contained' onClick={stop} disabled={!state.isRecording}>Stop</Button>
+          */}
+      <AudioPlayer url={state.blobURL} source={mic} />
+      {/*just to check if the sendAudioToServer function is called*/}
+    </div>
+  );
+};
 
 export default AudioRecorder;
