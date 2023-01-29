@@ -120,7 +120,7 @@ function Session(){
     setPullState(true)
     setLoading(false)
     if (socket) {
-      setOnline('yes')
+      setOnline('') //now it is offline
       socket.on("connect", (data) => {
         setMessages({
           keys: data.keys,
@@ -221,18 +221,15 @@ function Session(){
                       alt="Immagine 1"
                       className="imgLeft"
                     ></motion.img>
-
-
-
                 <motion.div
                         whileHover={{
-                          scale: 1.2,
+                          scale: 1.1,
                           transition: { duration: 0.5 },
                         }}>
                     <AudioPlayer
                         url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
                         messages.audio_keys[pickMain+1]}
-                        className="buttonLeft"
+                        className = "buttonLeft"
                     />
                   </motion.div>
                     <motion.img
@@ -263,6 +260,11 @@ function Session(){
                       alt="Immagine 2"
                       className="imgCentral"
                     ></motion.img>
+                    <AudioPlayer
+                        url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                        messages.audio_keys[pickMain+2]}
+                        className = "buttonCentral"
+                    />
                     <motion.img
                         whileHover={{
                           scale: 1.2,
@@ -290,14 +292,12 @@ function Session(){
                       alt="Immagine 3"
                       className="imgRight"
                     ></motion.img>
+                    <AudioPlayer
+                        url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                        messages.audio_keys[pickMain+3]}
+                        className = "buttonRight"
+                    />
                 <div className="row">
-
-                  {/*<motion.Button*/}
-                  {/*      whileHover={{*/}
-                  {/*        scale: 1.2,*/}
-                  {/*        transition: { duration: 0.5 },*/}
-                  {/*      }}*/}
-                  {/*      variant="contained" onClick={navigateCreation}>Esci</motion.Button>*/}
                   <motion.div
                         whileHover={{
                           scale: 1.2,
