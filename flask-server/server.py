@@ -230,4 +230,5 @@ def add_session():
 
 # Running app
 if __name__ == '__main__':
-    socketio.run(app)
+    socketio.run(app, allow_unsafe_werkzeug=True)
+    #app.run()

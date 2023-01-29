@@ -55,7 +55,6 @@
   position: absolute;
   top: 150px;
   left: 80px;
-  /* background-color: powderblue; */
 }
 
 .imgCentral {
@@ -64,7 +63,6 @@
   position: absolute;
   top: 150px;
   left: 650px;
-  /* background-color: powderblue; */
 }
 
 .imgRight {
@@ -73,23 +71,36 @@
   position: absolute;
   top: 150px;
   right: 80px;
-  /* background-color: powderblue; */
 }
 
-.over{
+.overLeft{
   height: 500px;
   width: 400px;
   position: fixed;
-  top: 300px;
+  top: 375px;
   left: 50px;
 }
 
+.overRight{
+  height: 500px;
+  width: 400px;
+  position: fixed;
+  top: 375px;
+  left: 400px;
+}
+
 .background{
-  height: 600px;
-  width: 600px;
+  height: 700px;
+  width: 700px;
   position: fixed;
   top: 200px;
   left: 80px;
+}
+
+.uiBackground{
+  height: 1080px;
+  width: 1920px;
+  position: center;
 }
 
 .next_button{
