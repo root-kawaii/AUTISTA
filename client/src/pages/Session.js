@@ -356,15 +356,7 @@ function Session() {
                     }
                     className="storyPanelButton"
                   />
-
-                <motion.div
-                  whileHover={{
-                    scale: 1.2,
-                    transition: { duration: 0.5 },
-                  }}
-                >
                   <AudioRecorder className="audioRecorder" imageName={arrayMain[pickMain]} />
-                </motion.div>
                 <motion.img
                   whileHover={{
                     scale: 1.2,
