@@ -10,7 +10,7 @@ import "../AudioUtilities/AudioRecorder.css";
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 const serverURL = "/audio";
 
-const AudioRecorder = ({ imageName }) => {
+const AudioRecorder = ({ imageName, className }) => {
   const [state, setState] = useState({
     isRecording: false,
     blob: null,
@@ -82,7 +82,7 @@ const AudioRecorder = ({ imageName }) => {
   );
   return (
     // if you use something different from "className=App", the recording set is rendered differently
-    <div className="App">
+    <div className={className}>
       <div>
         <IconButton
           variant="contained"

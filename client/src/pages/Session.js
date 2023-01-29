@@ -375,7 +375,7 @@ function Session() {
                     transition: { duration: 0.5 },
                   }}
                 >
-                  <AudioRecorder imageName={arrayMain[pickMain]} />
+                  <AudioRecorder className="audioRecorder" imageName={arrayMain[pickMain]} />
                 </motion.div>
                 <motion.img
                   whileHover={{
@@ -457,7 +457,7 @@ function Session() {
                     }
                     className="storyPanelButton"
                   />
-                  <AudioRecorder imageName={arrayAdventure[pickAdventure]} />
+                  <AudioRecorder className="audioRecorder" imageName={arrayAdventure[pickAdventure]} />
                 <img
                   src={next_button}
                   class="next_button"

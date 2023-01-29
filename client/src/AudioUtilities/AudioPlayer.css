@@ -28,19 +28,11 @@
 }
 
 .storyPanelButton{
-  height: 100px;
-  width: 150px;
+  height: 175px;
+  width: 250px;
   position: absolute;
-  bottom: 300px;
+  bottom: 275px;
   right: 300px;
-}
-
-.character{
-  height: 100px;
-  width: 1000px;
-  top: 1px;  
-  position: absolute;
-  top: 1px;
 }
 
 .character{
