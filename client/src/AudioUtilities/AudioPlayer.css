@@ -5,24 +5,32 @@
 
 .buttonLeft {
   height: 200px;
-  width: 400px;
+  width: 300px;
   position: absolute;
-  top: 550px;
-  left: 80px;
+  top: 525px;
+  left: 120px;
 }
 
 .buttonCentral {
-  height: 300px;
-  width: 400px;
+  height: 200px;
+  width: 300px;
   position: absolute;
-  top: 550px;
+  top: 525px;
   left: 760px;
 }
 
 .buttonRight {
-  height: 300px;
-  width: 400px;
+  height: 200px;
+  width: 300px;
   position: absolute;
-  top: 550px;
-  right: 80px;
+  top: 525px;
+  right: 200px;
+}
+
+.storyPanelButton{
+  height: 100px;
+  width: 150px;
+  position: absolute;
+  bottom: 300px;
+  right: 300px;
 }
