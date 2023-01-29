@@ -13,6 +13,7 @@ import WebSocketCall from "../components/WebSocketCall";
 import { io } from "socket.io-client";
 import {socket, SocketContext} from '../components/socketto';
 import next_button from '../Assets/UI/next_button.png'
+import {motion} from "framer-motion";
 
 
 
@@ -193,7 +194,12 @@ function Session(){
               <h2>loading... </h2>
             ) : isSelection ? (
               <>
-                    <img
+                    <motion.img
+                        whileHover={{
+                          scale: 1.2,
+                          transition: { duration: 0.5 },
+                        }}
+
                       onClick={() => {
                         setIsLoading(true);
                         setIsSelection(false);
@@ -214,13 +220,26 @@ function Session(){
                         messages.keys[1] ):(arrayImages[pager][0])}
                       alt="Immagine 1"
                       className="imgLeft"
-                    ></img>
+                    ></motion.img>
+
+
+
+                <motion.div
+                        whileHover={{
+                          scale: 1.2,
+                          transition: { duration: 0.5 },
+                        }}>
                     <AudioPlayer
                         url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
                         messages.audio_keys[pickMain+1]}
                         className="buttonLeft"
                     />
-                    <img
+                  </motion.div>
+                    <motion.img
+                        whileHover={{
+                          scale: 1.2,
+                          transition: { duration: 0.5 },
+                        }}
                       onClick={() => {
                         setIsLoading(true);
                         setIsSelection(false);
@@ -243,8 +262,12 @@ function Session(){
                       }
                       alt="Immagine 2"
                       className="imgCentral"
-                    ></img>
-                    <img
+                    ></motion.img>
+                    <motion.img
+                        whileHover={{
+                          scale: 1.2,
+                          transition: { duration: 0.5 },
+                        }}
                       onClick={() => {
                         setIsLoading(true);
                         setIsSelection(false);
@@ -266,10 +289,22 @@ function Session(){
                       }
                       alt="Immagine 3"
                       className="imgRight"
-                    ></img>
+                    ></motion.img>
                 <div className="row">
-                  
+
+                  {/*<motion.Button*/}
+                  {/*      whileHover={{*/}
+                  {/*        scale: 1.2,*/}
+                  {/*        transition: { duration: 0.5 },*/}
+                  {/*      }}*/}
+                  {/*      variant="contained" onClick={navigateCreation}>Esci</motion.Button>*/}
+                  <motion.div
+                        whileHover={{
+                          scale: 1.2,
+                          transition: { duration: 0.5 },
+                        }}>
                     <Button variant="contained" onClick={navigateCreation}>Esci</Button>
+                  </motion.div>
                 </div>
                 {/* update every click... */}
                 {/* <button onClick={fetchImages}>next page!</button> */}
@@ -288,28 +323,56 @@ function Session(){
                 {/*First page, there is only the main character*/}
                 {pager === 0 ? (
                 <>
-                    <img src={animatedMain ? (arrayMainGif[pickMain]) : (arrayMain[pickMain])}
+                    <motion.img
+                        whileHover={{
+                          scale: 1.2,
+                          transition: { duration: 0.5 },
+                        }}
+                        src={animatedMain ? (arrayMainGif[pickMain]) : (arrayMain[pickMain])}
                          className='overLeft'
                          alt='wow'
                          onClick={() => animateMainImage()}
-                    ></img>
+                    ></motion.img>
                     <div className="column">
                       <text>
                         {messages.text_keys[pickMain]}
                       </text>
                     </div>
-                    <img src={next_button} class='next_button' onClick={progress}></img>
+                    <motion.img
+                        whileHover={{
+                          scale: 1.2,
+                          transition: { duration: 0.5 },
+                        }}
+                        src={next_button} class='next_button' onClick={progress}></motion.img>
                     <div className="row">
+                      <motion.div
+                        whileHover={{
+                          scale: 1.2,
+                          transition: { duration: 0.5 },
+                        }}>
                         <AudioPlayer
                             url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
                             messages.audio_keys[pickMain+1]}
                         />
+                        </motion.div>
                     </div>
                     <div className="row">
+                      <motion.div
+                        whileHover={{
+                          scale: 1.2,
+                          transition: { duration: 0.5 },
+                        }}>
                           <AudioRecorder imageName={arrayMain[pickMain]}/>
+                        </motion.div>
                     </div>
                     <div className="row">
+                      <motion.div
+                        whileHover={{
+                          scale: 1.2,
+                          transition: { duration: 0.5 },
+                        }}>
                         <Button variant="contained" onClick={navigateCreation}>Esci</Button>
+                        </motion.div>
                     </div>
                 </>
                   ) :
