@@ -181,11 +181,11 @@ function Session() {
         ) : isSelection ? (
           <>
             <AudioPlayer
-              className="chooseImagePanel"
-              source={protagonista}
-              url={
-                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
-              }
+                className="chooseImagePanel"
+                source={protagonista}
+                url={
+                  "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
+                }
             ></AudioPlayer>
             <motion.img
               whileHover={{
@@ -221,20 +221,13 @@ function Session() {
               alt="Immagine 1"
               className="imgLeft"
             ></motion.img>
-            <motion.div
-              whileHover={{
-                scale: 1.1,
-                transition: { duration: 0.5 },
-              }}
-            >
-              <AudioPlayer
+            <AudioPlayer
                 source={booko}
                 url={
                   "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dino gentile.mp3"
                 }
                 className="buttonLeft"
-              />
-            </motion.div>
+            />
             <motion.img
               whileHover={{
                 scale: 1.2,
@@ -355,12 +348,7 @@ function Session() {
                 <Box className="textBox">
                   <text className="Session-text">BA !</text>
                 </Box>
-                <motion.div
-                  whileHover={{
-                    scale: 1.2,
-                    transition: { duration: 0.5 },
-                  }}
-                >
+
                   <AudioPlayer
                     source={booko}
                     url={
@@ -368,7 +356,7 @@ function Session() {
                     }
                     className="storyPanelButton"
                   />
-                </motion.div>
+
                 <motion.div
                   whileHover={{
                     scale: 1.2,
@@ -395,14 +383,18 @@ function Session() {
                   alt="wow"
                   class="background"
                 ></img>
-                <img
+                <motion.img
+                    whileHover={{
+                      scale: 1.2,
+                      transition: { duration: 0.5 },
+                    }}
                   src={
                     animatedMain ? arrayMainGif[pickMain] : arrayMain[pickMain]
                   }
                   class="overLeft"
                   alt="wow"
                   onClick={() => animateMainImage()}
-                ></img>
+                ></motion.img>
                 <Box className="textBox">
                   <text>{messages.text_keys[pickBackground]}</text>
                 </Box>
@@ -414,11 +406,15 @@ function Session() {
                     className="storyPanelButton"
                   />
                   <AudioRecorder className="audioRecorder" imageName={arrayBackground[pickBackground]} />
-                  <img
+                  <motion.img
+                      whileHover={{
+                        scale: 1.2,
+                        transition: { duration: 0.5 },
+                      }}
                     src={next_button}
                     class="next_button"
                     onClick={progress}
-                  ></img>
+                  ></motion.img>
               </>
             ) : (
               <>
@@ -428,15 +424,23 @@ function Session() {
                   alt="wow"
                   className="background"
                 ></img>
-                <img
+                <motion.img
+                    whileHover={{
+                      scale: 1.2,
+                      transition: { duration: 0.5 },
+                    }}
                   src={
                     animatedMain ? arrayMainGif[pickMain] : arrayMain[pickMain]
                   }
                   class="overLeft"
                   alt="wow"
                   onClick={() => animateMainImage()}
-                ></img>
-                <img
+                ></motion.img>
+                <motion.img
+                    whileHover={{
+                      scale: 1.2,
+                      transition: { duration: 0.5 },
+                    }}
                   src={
                     animatedSecondary
                       ? arrayAdventureGif[pickAdventure]
@@ -445,7 +449,7 @@ function Session() {
                   className="overRight"
                   alt="wow"
                   onClick={() => animateSecondaryImage()}
-                ></img>
+                ></motion.img>
                 <Box className="textBox">
                   <text>{messages.text_keys[pickAdventure]}</text>
                 </Box>
@@ -458,11 +462,15 @@ function Session() {
                     className="storyPanelButton"
                   />
                   <AudioRecorder className="audioRecorder" imageName={arrayAdventure[pickAdventure]} />
-                <img
+                <motion.img
+                    whileHover={{
+                      scale: 1.2,
+                      transition: { duration: 0.5 },
+                    }}
                   src={next_button}
                   class="next_button"
                   onClick={progress}
-                ></img>
+                ></motion.img>
               </>
             )}
           </>

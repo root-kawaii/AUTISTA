@@ -4,6 +4,7 @@ import textToSpeech from "./TextToSpeech";
 import TTS from "./TextToSpeech";
 import booko from "../Assets/UI/book_button.png";
 import "../AudioUtilities/AudioPlayer.css";
+import { motion } from "framer-motion";
 
 const currentBaseUrl = "https://aui20222.s3.eu-central-1.amazonaws.com/";
 const currentAudioName = "audioBanana.aac";
@@ -36,7 +37,12 @@ const AudioPlayer = ({ url, className, source }) => {
   const [playing, toggle] = useAudio(url);
   return (
     <div>
-      <img className={className} src={source} onClick={toggle}></img>
+      <motion.img
+          whileHover={{
+                scale: 1.2,
+                transition: { duration: 0.5 },
+              }}
+          className={className} src={source} onClick={toggle}></motion.img>
     </div>
   );
 };
