@@ -12,6 +12,7 @@ import { socket, SocketContext } from "../components/socketto";
 import next_button from "../Assets/UI/next_button.png";
 import booko from "../Assets/UI/book_button.png";
 import { motion } from "framer-motion";
+import Box from '@mui/material/Box';
 
 //#region MediaImport
 //----Import section for images----//
@@ -43,6 +44,7 @@ import wizard from "../Assets/Events/mago.png";
 //import UI
 import uiBackground from "../Assets/UI/pink_background_M.png";
 import protagonista from "../Assets/UI/protagonista.png";
+import {background} from "@chakra-ui/react";
 
 //#endregion
 
@@ -179,7 +181,7 @@ function Session() {
         ) : isSelection ? (
           <>
             <AudioPlayer
-              className="character"
+              className="chooseImagePanel"
               source={protagonista}
               url={
                 "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
@@ -350,10 +352,9 @@ function Session() {
                   alt="wow"
                   onClick={() => animateMainImage()}
                 ></motion.img>
-                <div className="column">
+                <Box className="textBox">
                   <text className="Session-text">BA !</text>
-                </div>
-
+                </Box>
                 <motion.div
                   whileHover={{
                     scale: 1.2,
@@ -368,7 +369,6 @@ function Session() {
                     className="storyPanelButton"
                   />
                 </motion.div>
-
                 <motion.div
                   whileHover={{
                     scale: 1.2,
@@ -386,14 +386,6 @@ function Session() {
                   class="next_button"
                   onClick={progress}
                 ></motion.img>
-                <div className="row">
-                  <motion.div
-                    whileHover={{
-                      scale: 1.2,
-                      transition: { duration: 0.5 },
-                    }}
-                  ></motion.div>
-                </div>
               </>
             ) : pager === 1 ? (
               <>
@@ -411,10 +403,9 @@ function Session() {
                   alt="wow"
                   onClick={() => animateMainImage()}
                 ></img>
-                <div className="column">
+                <Box className="textBox">
                   <text>{messages.text_keys[pickBackground]}</text>
-                </div>
-                <div className="row">
+                </Box>
                   <AudioPlayer
                     source={booko}
                     url={
@@ -422,18 +413,12 @@ function Session() {
                     }
                     className="storyPanelButton"
                   />
-                </div>
-                <div className="row">
-                  <AudioRecorder imageName={arrayBackground[pickBackground]} />
-                </div>
-
-                <div className="row">
+                  <AudioRecorder className="audioRecorder" imageName={arrayBackground[pickBackground]} />
                   <img
                     src={next_button}
                     class="next_button"
                     onClick={progress}
                   ></img>
-                </div>
               </>
             ) : (
               <>
@@ -461,32 +446,21 @@ function Session() {
                   alt="wow"
                   onClick={() => animateSecondaryImage()}
                 ></img>
-                <div className="column">
+                <Box className="textBox">
                   <text>{messages.text_keys[pickAdventure]}</text>
-                </div>
-                <div className="row">
+                </Box>
                   <AudioPlayer
                     url={
                       "https://aui20222.s3.eu-central-1.amazonaws.com/" +
                       messages.audio_keys[pickAdventure + 1]
                     }
                   />
-                </div>
-                <div className="row">
                   <AudioRecorder imageName={arrayAdventure[pickAdventure]} />
-                </div>
                 <img
                   src={next_button}
                   class="next_button"
                   onClick={progress}
                 ></img>
-                <div className="row">
-                  <img
-                    src={next_button}
-                    class="next_button"
-                    onClick={progress}
-                  ></img>
-                </div>
               </>
             )}
           </>

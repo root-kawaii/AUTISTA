@@ -7,7 +7,7 @@
   height: 200px;
   width: 300px;
   position: absolute;
-  top: 525px;
+  top: 700px;
   left: 120px;
 }
 
@@ -15,16 +15,16 @@
   height: 200px;
   width: 300px;
   position: absolute;
-  top: 525px;
-  left: 760px;
+  top: 700px;
+  left: 800px;
 }
 
 .buttonRight {
   height: 200px;
   width: 300px;
   position: absolute;
-  top: 525px;
-  right: 200px;
+  top: 700px;
+  right: 120px;
 }
 
 .storyPanelButton{
