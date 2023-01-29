@@ -83,24 +83,26 @@ const AudioRecorder = ({ imageName }) => {
   return (
     // if you use something different from "className=App", the recording set is rendered differently
     <div className="App">
-      <IconButton
-        variant="contained"
-        aria-label="Record"
-        size="large"
-        color={state.isRecording === true ? "error" : "success"}
-        onClick={changeState}
-      >
-        <img
-          className="mic_piccino"
-          src={mic}
-          disabled={state.isRecording}
-        ></img>
-      </IconButton>
+      <div>
+        <IconButton
+          variant="contained"
+          aria-label="Record"
+          size="large"
+          color={state.isRecording === true ? "error" : "success"}
+          onClick={changeState}
+        >
+          <img
+            className="mic_piccino"
+            src={mic}
+            disabled={state.isRecording}
+          ></img>
+        </IconButton>
+      </div>
       {/*
         <Button variant='contained' onClick={changeState} disabled={state.isRecording}>Record</Button>
         <Button variant='contained' onClick={stop} disabled={!state.isRecording}>Stop</Button>
           */}
-      <AudioPlayer url={state.blobURL} source={mic} />
+      <audio url={state.blobURL} controls="controls" />
       {/*just to check if the sendAudioToServer function is called*/}
     </div>
   );

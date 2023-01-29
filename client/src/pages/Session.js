@@ -111,14 +111,12 @@ function Session() {
     if (socket) {
       setOnline("");
       socket.on("connect", (data) => {
-        //TODO: can data be undefined? what is the correct behavior?
-        data &&
-          setMessages({
-            keys: data.keys,
-            audio_keys: data.story_audio,
-            text_keys: data.story_texts,
-            prev_images: data.prev_images,
-          });
+        setMessages({
+          keys: data.keys,
+          audio_keys: data.story_audio,
+          text_keys: data.story_texts,
+          prev_images: data.prev_images,
+        });
       });
       console.log(messages.keys[1]);
     }
@@ -323,11 +321,7 @@ function Session() {
                   scale: 1.2,
                   transition: { duration: 0.5 },
                 }}
-              >
-                <Button variant="contained" onClick={navigateCreation}>
-                  Esci
-                </Button>
-              </motion.div>
+              ></motion.div>
             </div>
             {/* update every click... */}
             {/* <button onClick={fetchImages}>next page!</button> */}
@@ -341,8 +335,6 @@ function Session() {
         ) : (
           //From here is the code for displaying what the user has chosen during the session
           <>
-            <p>name: {data.name}</p>
-            <p>age: {data.age}</p>
             {/*First page, there is only the main character*/}
             {pager === 0 ? (
               <>
@@ -359,15 +351,39 @@ function Session() {
                   onClick={() => animateMainImage()}
                 ></motion.img>
                 <div className="column">
-                  <p>{messages.text_keys[pickMain]}</p>
+                  <text>{messages.text_keys[pickMain]}</text>
                 </div>
+
+                <motion.div
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 0.5 },
+                  }}
+                >
+                  <AudioPlayer
+                    source={booko}
+                    url={
+                      "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dinosauro.mp3"
+                    }
+                    className="storyPanelButton"
+                  />
+                </motion.div>
+
+                <motion.div
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 0.5 },
+                  }}
+                >
+                  <AudioRecorder imageName={arrayMain[pickMain]} />
+                </motion.div>
                 <motion.img
                   whileHover={{
                     scale: 1.2,
                     transition: { duration: 0.5 },
                   }}
                   src={next_button}
-                  className="next_button"
+                  class="next_button"
                   onClick={progress}
                 ></motion.img>
                 <div className="row">
@@ -376,37 +392,7 @@ function Session() {
                       scale: 1.2,
                       transition: { duration: 0.5 },
                     }}
-                  >
-                    <AudioPlayer
-                      source={booko}
-                      url={
-                        "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dinosauro.mp3"
-                      }
-                      className="storyPanelButton"
-                    />
-                  </motion.div>
-                </div>
-                <div className="row">
-                  <motion.div
-                    whileHover={{
-                      scale: 1.2,
-                      transition: { duration: 0.5 },
-                    }}
-                  >
-                    <AudioRecorder imageName={arrayMain[pickMain]} />
-                  </motion.div>
-                </div>
-                <div className="row">
-                  <motion.div
-                    whileHover={{
-                      scale: 1.2,
-                      transition: { duration: 0.5 },
-                    }}
-                  >
-                    <Button variant="contained" onClick={navigateCreation}>
-                      Esci
-                    </Button>
-                  </motion.div>
+                  ></motion.div>
                 </div>
               </>
             ) : pager === 1 ? (
@@ -415,24 +401,19 @@ function Session() {
                 <img
                   src={arrayBackgroundGif[pickBackground]}
                   alt="wow"
-                  className="background"
+                  class="background"
                 ></img>
                 <img
                   src={
                     animatedMain ? arrayMainGif[pickMain] : arrayMain[pickMain]
                   }
-                  className="overLeft"
+                  class="overLeft"
                   alt="wow"
                   onClick={() => animateMainImage()}
                 ></img>
                 <div className="column">
                   <text>{messages.text_keys[pickBackground]}</text>
                 </div>
-                <img
-                  src={next_button}
-                  className="next_button"
-                  onClick={progress}
-                ></img>
                 <div className="row">
                   <AudioPlayer
                     source={booko}
@@ -447,9 +428,11 @@ function Session() {
                 </div>
 
                 <div className="row">
-                  <Button variant="contained" onClick={navigateCreation}>
-                    Esci
-                  </Button>
+                  <img
+                    src={next_button}
+                    class="next_button"
+                    onClick={progress}
+                  ></img>
                 </div>
               </>
             ) : (
@@ -464,7 +447,7 @@ function Session() {
                   src={
                     animatedMain ? arrayMainGif[pickMain] : arrayMain[pickMain]
                   }
-                  className="overLeft"
+                  class="overLeft"
                   alt="wow"
                   onClick={() => animateMainImage()}
                 ></img>
@@ -481,11 +464,6 @@ function Session() {
                 <div className="column">
                   <text>{messages.text_keys[pickAdventure]}</text>
                 </div>
-                <img
-                  src={next_button}
-                  className="next_button"
-                  onClick={progress}
-                ></img>
                 <div className="row">
                   <AudioPlayer
                     url={
@@ -497,10 +475,17 @@ function Session() {
                 <div className="row">
                   <AudioRecorder imageName={arrayAdventure[pickAdventure]} />
                 </div>
+                <img
+                  src={next_button}
+                  class="next_button"
+                  onClick={progress}
+                ></img>
                 <div className="row">
-                  <Button variant="contained" onClick={navigateCreation}>
-                    Esci
-                  </Button>
+                  <img
+                    src={next_button}
+                    class="next_button"
+                    onClick={progress}
+                  ></img>
                 </div>
               </>
             )}
