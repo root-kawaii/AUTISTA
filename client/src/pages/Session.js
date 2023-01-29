@@ -351,7 +351,7 @@ function Session() {
                   onClick={() => animateMainImage()}
                 ></motion.img>
                 <div className="column">
-                  <text>{messages.text_keys[pickMain]}</text>
+                  <text className="Session-text">BA !</text>
                 </div>
 
                 <motion.div

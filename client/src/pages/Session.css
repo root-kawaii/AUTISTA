@@ -28,6 +28,12 @@
   color: #61dafb;
 }
 
+.Session-text {
+  font-size: 100px;
+  position: absolute;
+  top: 300px;
+}
+
 @keyframes Session-logo-spin {
   from {
     transform: rotate(0deg);
@@ -116,3 +122,4 @@
   height: 120px;
   width: 300px;
 }
+
