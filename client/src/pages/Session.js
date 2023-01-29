@@ -380,6 +380,7 @@ function Session() {
                       url={
                         "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dinosauro.mp3"
                       }
+                      className="storyPanelButton"
                     />
                   </motion.div>
                 </div>
@@ -436,6 +437,7 @@ function Session() {
                     url={
                       "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dinosauro event.mp3"
                     }
+                    className="storyPanelButton"
                   />
                 </div>
                 <div className="row">
@@ -484,7 +486,6 @@ function Session() {
                 ></img>
                 <div className="row">
                   <AudioPlayer
-                    source={booko}
                     url={
                       "https://aui20222.s3.eu-central-1.amazonaws.com/" +
                       messages.audio_keys[pickAdventure + 1]
