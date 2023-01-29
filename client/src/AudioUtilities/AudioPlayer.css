@@ -2,3 +2,27 @@
     height: 250px;
     width: 300px;
 }
+
+.buttonLeft {
+  height: 200px;
+  width: 400px;
+  position: absolute;
+  top: 550px;
+  left: 80px;
+}
+
+.buttonCentral {
+  height: 300px;
+  width: 400px;
+  position: absolute;
+  top: 550px;
+  left: 760px;
+}
+
+.buttonRight {
+  height: 300px;
+  width: 400px;
+  position: absolute;
+  top: 550px;
+  right: 80px;
+}
