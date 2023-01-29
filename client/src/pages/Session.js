@@ -147,6 +147,10 @@ function Session(){
               <h2>loading... </h2>
             ) : isSelection ? (
               <>
+                    <AudioPlayer
+                      url={"https://aui20222.s3.eu-central-1.amazonaws.com/" +
+                      messages.audio_keys[pickMain+1]}
+                    />
                     <img
                       onClick={() => {
                         setIsLoading(true);
@@ -187,6 +191,7 @@ function Session(){
                       className="imgRight"
                     ></img>
                 <div className="row">
+                  
                     <Button variant="contained" onClick={navigateCreation}>Esci</Button>
                 </div>
                 {/* update every click... */}
