@@ -26,3 +26,11 @@
   top: 550px;
   right: 80px;
 }
+
+.character{
+  height: 100px;
+  width: 1000px;
+  top: 1px;  
+  position: absolute;
+  top: 1px;
+}

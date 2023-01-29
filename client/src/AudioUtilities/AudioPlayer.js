@@ -38,12 +38,12 @@ const useAudio = url => {
 };
 
 
-const AudioPlayer = ({ url, className }) => {
+const AudioPlayer = ({ url, className,source }) => {
   const [playing, toggle] = useAudio(url);
   console.log({className});
   return (
-    <div className={className}>
-      <img src={booko} onClick={toggle}></img>
+    <div >
+      <img className={className} src={source} onClick={toggle}></img>
     </div>
   );
 };

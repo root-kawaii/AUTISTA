@@ -14,7 +14,7 @@
 }
 
 .Session-header {
-  background-color: #282c34;
+  background-color: #201a4a;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -48,6 +48,13 @@
   padding: 5px;
 }
 
+.protagonista{
+  height: 200px;
+  width: 1000px;
+  position: absolute;
+  top: 150px;
+  left: 80px;
+}
 
 .imgLeft {
   height: 400px;
