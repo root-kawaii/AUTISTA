@@ -1,3 +1,8 @@
+import os
+import whisper
+import shutil
+from pygame import mixer
+import time
 import datetime
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
@@ -51,7 +56,7 @@ story_char_audio = []
 story_char_text = []
 for obj in s3.Bucket('aui20222').objects.filter(Prefix="Stories_Char/", Delimiter='/'):
     body = obj.get()['Body'].read()
-    if(obj.key.endswith('txt')):
+    if (obj.key.endswith('txt')):
         story_char_text.append(str(body))
     else:
         story_char_audio.append(obj.key)
@@ -62,7 +67,7 @@ story_place_audio = []
 story_place_text = []
 for obj in s3.Bucket('aui20222').objects.filter(Prefix="Stories_Place/", Delimiter='/'):
     body = obj.get()['Body'].read()
-    if(obj.key.endswith('txt')):
+    if (obj.key.endswith('txt')):
         story_place_text.append(str(body))
     else:
         story_place_audio.append(obj.key)
@@ -74,7 +79,7 @@ story_adv_audio = []
 story_adv_text = []
 for obj in s3.Bucket('aui20222').objects.filter(Prefix="Stories_Adv/", Delimiter='/'):
     body = obj.get()['Body'].read()
-    if(obj.key.endswith('txt')):
+    if (obj.key.endswith('txt')):
         story_adv_text.append(str(body))
     else:
         story_adv_audio.append(obj.key)
@@ -96,7 +101,7 @@ def connected():
     print('connected')
     print('broiasjasdfioas')
     emit("connect", {'keys': img_array[0], 'story_audio': audio_array[0],
-         'story_texts': text_aray[0],'prev_images':["placeholder"]}, broadcast=True)
+         'story_texts': text_aray[0], 'prev_images': ["placeholder"]}, broadcast=True)
 
 
 @ socketio.on("data")
@@ -105,9 +110,8 @@ def handle_message(data):
     selectedImages.append(img_array[data["pager"]][data["pickMain"]+1])
     print(selectedImages)
     emit("connect", {'keys': img_array[
-        (data["pager"] + 1) % 3], 'story_audio': audio_array[(data["pager"] + 1) % 3], 'story_texts': text_aray[(data["pager"] + 1) % 3], 
+        (data["pager"] + 1) % 3], 'story_audio': audio_array[(data["pager"] + 1) % 3], 'story_texts': text_aray[(data["pager"] + 1) % 3],
         'prev_images': selectedImages}, broadcast=True)
-    
 
 
 @ socketio.on("sess")
@@ -149,18 +153,14 @@ def get_audio():
     save_audio(audio, imageName)
     return "audio received"
 
-import os
-import time
-from pygame import mixer
-import shutil
-import whisper
 
 model = whisper.load_model("small")
+
 
 def save_audio(audio, imageName):
     createAudioFolder()
     currentTime = time.localtime()
-    fileName = time.strftime("%Y-%d-%m_%H.%M.%S_", currentTime) + imageName 
+    fileName = time.strftime("%Y-%d-%m_%H.%M.%S_", currentTime) + imageName
     audioName = fileName + '.mp3'
     folderName = getAudiosPath()
     name_audio = os.path.join(folderName, audioName)
@@ -175,8 +175,6 @@ def save_audio(audio, imageName):
     f.close()
     print('Done!')
 
-
-
     # uncomment to test if the audio is received correctly
 
     # mixer.init()
@@ -186,20 +184,24 @@ def save_audio(audio, imageName):
     #     time.sleep(0.5)
     # mixer.quit()
 
+
 def deriveNameFromPath(path):
     image = path.split('/')[-1]
     name = image.split('.')[0]
     return name
+
 
 def createAudioFolder():
     name = getAudiosPath()
     if not os.path.exists(name):
         os.mkdir(name)
 
+
 def deleteAudios():
     name = getAudiosPath()
     if os.path.exists(name):
         shutil.rmtree(name)
+
 
 def getAudiosPath():
     path = os.getcwd()
@@ -214,7 +216,7 @@ def get_ses():
     body = request.get_json()
     # print("current page request: " + body)
     print(body["age"])
-    return(body)
+    return (body)
 
 
 @ app.route('/add', methods=["POST"], strict_slashes=False)
@@ -237,4 +239,4 @@ def add_session():
 # Running app
 if __name__ == '__main__':
     socketio.run(app)
-    #app.run()
+    # app.run()

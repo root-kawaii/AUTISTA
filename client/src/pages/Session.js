@@ -12,7 +12,7 @@ import { socket, SocketContext } from "../components/socketto";
 import next_button from "../Assets/UI/next_button.png";
 import booko from "../Assets/UI/book_button.png";
 import { motion } from "framer-motion";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 
 //#region MediaImport
 //----Import section for images----//
@@ -44,7 +44,7 @@ import wizard from "../Assets/Events/mago.png";
 //import UI
 import uiBackground from "../Assets/UI/pink_background_M.png";
 import protagonista from "../Assets/UI/protagonista.png";
-import {background} from "@chakra-ui/react";
+import { background } from "@chakra-ui/react";
 
 //#endregion
 
@@ -181,11 +181,11 @@ function Session() {
         ) : isSelection ? (
           <>
             <AudioPlayer
-                className="chooseImagePanel"
-                source={protagonista}
-                url={
-                  "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
-                }
+              className="chooseImagePanel"
+              source={protagonista}
+              url={
+                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
+              }
             ></AudioPlayer>
             <motion.img
               whileHover={{
@@ -222,11 +222,11 @@ function Session() {
               className="imgLeft"
             ></motion.img>
             <AudioPlayer
-                source={booko}
-                url={
-                  "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dino gentile.mp3"
-                }
-                className="buttonLeft"
+              source={booko}
+              url={
+                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dino gentile.mp3"
+              }
+              className="buttonLeft"
             />
             <motion.img
               whileHover={{
@@ -346,24 +346,27 @@ function Session() {
                   onClick={() => animateMainImage()}
                 ></motion.img>
                 <Box className="textBox">
-                  <text className="Session-text">BA !</text>
+                  <text className="Session-text">BA</text>
                 </Box>
 
-                  <AudioPlayer
-                    source={booko}
-                    url={
-                      "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dinosauro.mp3"
-                    }
-                    className="storyPanelButton"
-                  />
-                  <AudioRecorder className="audioRecorder" imageName={arrayMain[pickMain]} />
+                <AudioPlayer
+                  source={booko}
+                  url={
+                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dinosauro.mp3"
+                  }
+                  className="storyPanelButton"
+                />
+                <AudioRecorder
+                  className="audioRecorder"
+                  imageName={arrayMain[pickMain]}
+                />
                 <motion.img
                   whileHover={{
                     scale: 1.2,
                     transition: { duration: 0.5 },
                   }}
                   src={next_button}
-                  class="next_button"
+                  className="next_button"
                   onClick={progress}
                 ></motion.img>
               </>
@@ -373,40 +376,43 @@ function Session() {
                 <img
                   src={arrayBackgroundGif[pickBackground]}
                   alt="wow"
-                  class="background"
+                  className="background"
                 ></img>
                 <motion.img
-                    whileHover={{
-                      scale: 1.2,
-                      transition: { duration: 0.5 },
-                    }}
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 0.5 },
+                  }}
                   src={
                     animatedMain ? arrayMainGif[pickMain] : arrayMain[pickMain]
                   }
-                  class="overLeft"
+                  className="overLeft"
                   alt="wow"
                   onClick={() => animateMainImage()}
                 ></motion.img>
                 <Box className="textBox">
-                  <text>{messages.text_keys[pickBackground]}</text>
+                  <text className="Session-text">PIO</text>
                 </Box>
-                  <AudioPlayer
-                    source={booko}
-                    url={
-                      "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dinosauro event.mp3"
-                    }
-                    className="storyPanelButton"
-                  />
-                  <AudioRecorder className="audioRecorder" imageName={arrayBackground[pickBackground]} />
-                  <motion.img
-                      whileHover={{
-                        scale: 1.2,
-                        transition: { duration: 0.5 },
-                      }}
-                    src={next_button}
-                    class="next_button"
-                    onClick={progress}
-                  ></motion.img>
+                <AudioPlayer
+                  source={booko}
+                  url={
+                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Castllo pio.mp3"
+                  }
+                  className="storyPanelButton"
+                />
+                <AudioRecorder
+                  className="audioRecorder"
+                  imageName={arrayBackground[pickBackground]}
+                />
+                <motion.img
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 0.5 },
+                  }}
+                  src={next_button}
+                  className="next_button"
+                  onClick={progress}
+                ></motion.img>
               </>
             ) : (
               <>
@@ -417,22 +423,22 @@ function Session() {
                   className="background"
                 ></img>
                 <motion.img
-                    whileHover={{
-                      scale: 1.2,
-                      transition: { duration: 0.5 },
-                    }}
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 0.5 },
+                  }}
                   src={
                     animatedMain ? arrayMainGif[pickMain] : arrayMain[pickMain]
                   }
-                  class="overLeft"
+                  className="overLeft"
                   alt="wow"
                   onClick={() => animateMainImage()}
                 ></motion.img>
                 <motion.img
-                    whileHover={{
-                      scale: 1.2,
-                      transition: { duration: 0.5 },
-                    }}
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 0.5 },
+                  }}
                   src={
                     animatedSecondary
                       ? arrayAdventureGif[pickAdventure]
@@ -443,24 +449,26 @@ function Session() {
                   onClick={() => animateSecondaryImage()}
                 ></motion.img>
                 <Box className="textBox">
-                  <text>{messages.text_keys[pickAdventure]}</text>
+                  <text className="Session-text">EVVAI</text>
                 </Box>
                 <AudioPlayer
-                    source={booko}
-                    url={
-                      "https://aui20222.s3.eu-central-1.amazonaws.com/" +
-                      messages.audio_keys[pickAdventure + 1]
-                    }
-                    className="storyPanelButton"
-                  />
-                  <AudioRecorder className="audioRecorder" imageName={arrayAdventure[pickAdventure]} />
+                  source={booko}
+                  url={
+                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Dinoeventtesoro.mp3"
+                  }
+                  className="storyPanelButton"
+                />
+                <AudioRecorder
+                  className="audioRecorder"
+                  imageName={arrayAdventure[pickAdventure]}
+                />
                 <motion.img
-                    whileHover={{
-                      scale: 1.2,
-                      transition: { duration: 0.5 },
-                    }}
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 0.5 },
+                  }}
                   src={next_button}
-                  class="next_button"
+                  className="next_button"
                   onClick={progress}
                 ></motion.img>
               </>

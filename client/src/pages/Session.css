@@ -29,7 +29,12 @@
 }
 
 .Session-text {
-  font-size: 100px;
+  font-size: 200px;
+  flex: 1;
+  justify-content: center;
+  line-height: 450px; 
+  
+
 }
 
 .textBox{
@@ -44,8 +49,8 @@
 
 .audioRecorder{
   position: absolute;
-  bottom: 100px;
-  right: 500px;
+  bottom: 130px;
+  right: 480px;
 }
 
 @keyframes Session-logo-spin {
@@ -69,11 +74,11 @@
 }
 
 .chooseImagePanel{
-  height: 150px;
-  width: 750px;
+  height: 500px;
+  width: 500px;
   position: absolute;
-  top: 100px;
-  left: 585px;
+  top: -80px;
+  left: 685px;
 }
 
 .imgLeft {

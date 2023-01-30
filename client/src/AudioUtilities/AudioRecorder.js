@@ -6,7 +6,7 @@ import MicIcon from "@mui/icons-material/Mic";
 import mic from "../Assets/UI/mic_icon.png";
 import AudioPlayer from "./AudioPlayer";
 import "../AudioUtilities/AudioRecorder.css";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 const serverURL = "/audio";
@@ -86,30 +86,34 @@ class AudioRecorder extends React.Component {
   render() {
     return (
       // if you use something different from "className=App", the recording set is rendered differently
-      <div className={this.props.className}>
-
+      <div>
         <IconButton
+          className="mic_piccino"
           variant="contained"
           aria-label="Record"
           size="large"
+          onClick={this.changeState}
           color={this.state.isRecording === true ? "error" : "success"}
         >
           <motion.img
-              whileHover={{
+            whileHover={{
               scale: 1.5,
               transition: { duration: 0.5 },
-              }}
-              class="mic_piccino"
-              src={mic}
-              onClick={this.changeState}
-              disabled={this.state.isRecording}
+            }}
+            className="mic_piccino2"
+            src={mic}
+            disabled={this.state.isRecording}
           ></motion.img>
         </IconButton>
         {/*
                 <Button variant='contained' onClick={this.changeState} disabled={this.state.isRecording}>Record</Button>
                 <Button variant='contained' onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
             */}
-        <audio src={this.state.blobURL} controls="controls" />
+        <audio
+          className={this.props.className}
+          src={this.state.blobURL}
+          controls="controls"
+        />
         {/*just to check if the sendAudioToServer function is called*/}
       </div>
     );

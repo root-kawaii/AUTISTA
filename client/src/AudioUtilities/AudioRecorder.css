@@ -1,4 +1,13 @@
 .mic_piccino{
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    top: 300px;
+    right: -110px;
+}
+
+.mic_piccino2{
+    height: 150px;
+    width: 150px;
+    align-items: center;
 }
