@@ -10,6 +10,8 @@ import json
 import boto3
 import sessionManager
 from flask_socketio import SocketIO, emit
+from phonet import Phonet
+import subprocess
 
 with open('auth.txt') as file:
     Lines = [line.rstrip() for line in file]
@@ -174,6 +176,12 @@ def save_audio(audio, imageName):
     f.write(result["text"])
     f.close()
     print('Done!')
+    phonet_name = f"Recordings/{audioName}"
+    print(phonet_name)
+    subprocess.Popen(
+        f'ffmpeg -i {phonet_name} -acodec pcm_s16le -ar 16000 {fileName}.wav', shell=True)
+    phon = Phonet(["all"])
+    phon.get_phon_wav(f"{fileName}.wav", f"{fileName}", True)
 
     # uncomment to test if the audio is received correctly
 
