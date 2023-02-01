@@ -192,6 +192,7 @@ function Session() {
                 scale: 1.2,
                 transition: { duration: 0.5 },
               }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => {
                 setIsLoading(true);
                 setIsSelection(false);
@@ -233,6 +234,7 @@ function Session() {
                 scale: 1.2,
                 transition: { duration: 0.5 },
               }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => {
                 setIsLoading(true);
                 setIsSelection(false);
@@ -274,6 +276,7 @@ function Session() {
                 scale: 1.2,
                 transition: { duration: 0.5 },
               }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => {
                 setIsLoading(true);
                 setIsSelection(false);
@@ -316,6 +319,7 @@ function Session() {
                   scale: 1.2,
                   transition: { duration: 0.5 },
                 }}
+                whileTap={{ scale: 0.9 }}
               ></motion.div>
             </div>
             {/* update every click... */}
@@ -338,6 +342,7 @@ function Session() {
                     scale: 1.2,
                     transition: { duration: 0.5 },
                   }}
+                  // whileTap={{ scale: 0.9 }}
                   src={
                     animatedMain ? arrayMainGif[pickMain] : arrayMain[pickMain]
                   }
@@ -365,6 +370,7 @@ function Session() {
                     scale: 1.2,
                     transition: { duration: 0.5 },
                   }}
+                  whileTap={{ scale: 0.9 }}
                   src={next_button}
                   className="next_button"
                   onClick={progress}
@@ -383,6 +389,7 @@ function Session() {
                     scale: 1.2,
                     transition: { duration: 0.5 },
                   }}
+                  // whileTap={{ scale: 0.9 }}
                   src={
                     animatedMain ? arrayMainGif[pickMain] : arrayMain[pickMain]
                   }
@@ -409,6 +416,7 @@ function Session() {
                     scale: 1.2,
                     transition: { duration: 0.5 },
                   }}
+                  whileTap={{ scale: 0.9 }}
                   src={next_button}
                   className="next_button"
                   onClick={progress}
@@ -427,6 +435,7 @@ function Session() {
                     scale: 1.2,
                     transition: { duration: 0.5 },
                   }}
+                  // whileTap={{ scale: 0.9 }}
                   src={
                     animatedMain ? arrayMainGif[pickMain] : arrayMain[pickMain]
                   }
@@ -439,6 +448,7 @@ function Session() {
                     scale: 1.2,
                     transition: { duration: 0.5 },
                   }}
+                  // whileTap={{ scale: 0.9 }}
                   src={
                     animatedSecondary
                       ? arrayAdventureGif[pickAdventure]
@@ -467,6 +477,7 @@ function Session() {
                     scale: 1.2,
                     transition: { duration: 0.5 },
                   }}
+                  whileTap={{ scale: 0.9 }}
                   src={next_button}
                   className="next_button"
                   onClick={progress}

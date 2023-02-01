@@ -100,6 +100,7 @@ class AudioRecorder extends React.Component {
               scale: 1.5,
               transition: { duration: 0.5 },
             }}
+              whileTap={{ scale: 0.9 }}
             className="mic_piccino2"
             src={mic}
             disabled={this.state.isRecording}
