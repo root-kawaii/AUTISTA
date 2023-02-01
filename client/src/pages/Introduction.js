@@ -40,7 +40,7 @@ function Introduction() {
                     source={protagonista}
                     url={owlLines[progress].audio}
                 ></AudioPlayer>
-                <Box className="textBox">
+                <Box className="owlChatBox">
                   <text className="intro-text">{owlLines[progress].line}</text>
                 </Box>
                 </div>
