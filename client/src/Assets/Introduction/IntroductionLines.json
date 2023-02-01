@@ -1,0 +1,14 @@
+[
+  {
+    "line": "Ciao! io sono il gufo",
+    "audio": "../Assets/Audios/ah.mp3"
+  },
+  {
+    "line": "piacere di conoscerti!",
+    "audio": "../Assets/Audios/ah.mp3"
+  },
+    {
+    "line": "Cominciamo l'avventura!",
+    "audio": "../Assets/Audios/ah.mp3"
+  }
+]

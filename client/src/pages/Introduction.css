@@ -1,0 +1,32 @@
+.Introduction {
+  text-align: center;
+}
+
+.Introduction-header {
+  background-color: #8ab2e7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.mainCharacter{
+  height: 775px;
+  width: 775px;
+  position: absolute;
+  top: 50px;
+  right: 250px;
+}
+
+.textBox{
+  width: 800px;
+  height: 500px;
+  position: absolute;
+  left: 100px;
+  top: 180px;
+  border: 5px solid lightblue;
+  border-radius: 16px;
+}
