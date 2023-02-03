@@ -346,7 +346,7 @@ function Session() {
                   src={
                     animatedMain ? arrayMainGif[pickMain] : arrayMain[pickMain]
                   }
-                  className="overLeft"
+                  className="onlyMainCharacter"
                   alt="wow"
                   onClick={() => animateMainImage()}
                 ></motion.img>

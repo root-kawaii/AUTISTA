@@ -113,6 +113,14 @@
   left: 50px;
 }
 
+.onlyMainCharacter{
+  height: 600px;
+  width: 450px;
+  position: fixed;
+  top: 200px;
+  left: 150px;
+}
+
 .overRight{
   height: 500px;
   width: 400px;
