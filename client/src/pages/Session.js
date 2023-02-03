@@ -188,6 +188,9 @@ function Session() {
               }
             ></AudioPlayer>
             <motion.img
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1, transition:{ duration: 1.2 , delay:1 }}}
+                viewport={{ once: true }}
               whileHover={{
                 scale: 1.2,
                 transition: { duration: 0.5 },
@@ -230,6 +233,9 @@ function Session() {
               className="buttonLeft"
             />
             <motion.img
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1, transition:{ duration: 1.2 , delay:1.8 }}}
+                viewport={{ once: true }}
               whileHover={{
                 scale: 1.2,
                 transition: { duration: 0.5 },
@@ -272,6 +278,9 @@ function Session() {
               className="buttonCentral"
             />
             <motion.img
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1, transition:{ duration: 1.2 , delay:2.6 }}}
+                viewport={{ once: true }}
               whileHover={{
                 scale: 1.2,
                 transition: { duration: 0.5 },
@@ -313,15 +322,7 @@ function Session() {
               }
               className="buttonRight"
             />
-            <div className="row">
-              <motion.div
-                whileHover={{
-                  scale: 1.2,
-                  transition: { duration: 0.5 },
-                }}
-                whileTap={{ scale: 0.9 }}
-              ></motion.div>
-            </div>
+
             {/* update every click... */}
             {/* <button onClick={fetchImages}>next page!</button> */}
             {/* <AudioPlayer

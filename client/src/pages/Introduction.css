@@ -30,3 +30,22 @@
   border: 5px solid lightblue;
   border-radius: 16px;
 }
+
+.gufoIntro{
+    height: 350px;
+    width: 350px;
+    /*position: fixed;*/
+    /*position: center;*/
+}
+
+.owlbutton {
+
+  width: 450px;
+  height: 450px;
+  backgroundColor: #000000FF;
+  /*background:none;*/
+  border: none;
+  position: absolute;
+  top: 200px;
+  right: 400px;
+}

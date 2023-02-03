@@ -1,14 +1,18 @@
 [
   {
     "line": "Ciao! io sono il gufo",
-    "audio": "../Assets/Audios/ah.mp3"
+    "audio": "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
   },
   {
     "line": "piacere di conoscerti!",
-    "audio": "../Assets/Audios/ah.mp3"
+    "audio": "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
   },
     {
     "line": "Cominciamo l'avventura!",
-    "audio": "../Assets/Audios/ah.mp3"
+    "audio": "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
+  },
+  {
+    "line": "Cominciamo l'avventura!",
+    "audio": "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
   }
 ]

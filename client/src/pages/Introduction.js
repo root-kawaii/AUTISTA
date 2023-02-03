@@ -5,7 +5,7 @@ import protagonista from "../Assets/UI/protagonista.png";
 import AudioPlayer from "../AudioUtilities/AudioPlayer";
 import Box from "@mui/material/Box";
 import {useNavigate} from "react-router-dom";
-
+import {motion} from "framer-motion";
 
 
 const owlLines = [];
@@ -30,16 +30,25 @@ function Introduction() {
         }
     }
 
-
     return (
         <div className="Introduction">
             <header className="Introduction-header">
-                <div onClick={nextLine}>
-                    <AudioPlayer
-                    className="mainCharacter"
-                    source={protagonista}
-                    url={owlLines[progress].audio}
-                ></AudioPlayer>
+                <div>
+                    <motion.button
+                            onClick={nextLine}
+                            className="owlbutton"
+                            animate={{ x: [0, 100, 300], y:[0, -50, 20], scale: [0.0, 0.5, 1.2], opacity:[0.3,0.8, 1]}}
+                            transition={{repeat:0, duration: 4 , delay:1, times: [0, 0.4, 1], }} >
+
+                              <AudioPlayer
+                              className="gufoIntro"
+                              source={protagonista}
+                              url={owlLines[progress].audio}
+                              // url={"https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3" }
+                              ></AudioPlayer>
+
+                    </motion.button>
+
                 <Box className="owlChatBox">
                   <text className="intro-text">{owlLines[progress].line}</text>
                 </Box>

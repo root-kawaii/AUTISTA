@@ -1,0 +1,27 @@
+.gufotest{
+    height: 350px;
+    width: 350px;
+    /*position: fixed;*/
+    /*position: center;*/
+}
+
+.owlbuttontest{
+
+    width: 450px;
+    height: 450px;
+    /*backgroundColor: #000000FF;*/
+    background:none;
+    border: none;
+    position: absolute;
+    top: 50px;
+    right: 500px;
+
+
+  /*  height: 775px;*/
+  /*width: 775px;*/
+  /*position: absolute;*/
+  /*top: 50px;*/
+  /*right: 250px;*/
+
+}
+
