@@ -11,6 +11,8 @@ import { motion } from "framer-motion";
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 const serverURL = "/audio";
 
+var currentAudio;
+
 class AudioRecorder extends React.Component {
   constructor(props) {
     super(props);
@@ -52,6 +54,9 @@ class AudioRecorder extends React.Component {
       .getMp3()
       .then(([buffer, blob]) => {
         const blobURL = URL.createObjectURL(blob);
+
+        currentAudio = new Audio(blobURL)
+
         this.setState({ blob: blob });
         this.setState({ blobURL, isRecording: false });
       })
@@ -83,6 +88,15 @@ class AudioRecorder extends React.Component {
     );
   }
 
+
+playAudio() {
+  currentAudio.play();
+}
+
+load = () => {currentAudio = new Audio(this.state.blobURL)}
+playSound = () => currentAudio.play()
+
+
   render() {
     return (
       // if you use something different from "className=App", the recording set is rendered differently
@@ -106,16 +120,50 @@ class AudioRecorder extends React.Component {
             disabled={this.state.isRecording}
           ></motion.img>
         </IconButton>
+
         {/*
                 <Button variant='contained' onClick={this.changeState} disabled={this.state.isRecording}>Record</Button>
                 <Button variant='contained' onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
             */}
-        <audio
-          className={this.props.className}
-          src={this.state.blobURL}
-          controls="controls"
-        />
-        {/*just to check if the sendAudioToServer function is called*/}
+        {/*<audio*/}
+        {/*  className={this.props.className}*/}
+        {/*  src={this.state.blobURL}*/}
+        {/*  controls="controls"*/}
+        {/*/>*/}
+
+          {/*<script>*/}
+          {/*  function play() {*/}
+          {/*      var audio = document.getElementById("audio");*/}
+          {/*      audio.play();*/}
+          {/*  }*/}
+          {/*  </script>*/}
+          {/*<input type="button" value="PLAY" onClick="play()"></input>*/}
+          {/*    <audio id="audio" src={this.state.blobURL}></audio>*/}
+
+
+        {/*<img*/}
+        {/*    style={{position:"absolute",*/}
+        {/*    left: 400}}*/}
+        {/*    src={mic} onClick={this.playAudio()}/>*/}
+
+        {/*  <button*/}
+
+        {/*  onClick={this.playAudio}*/}
+        {/*  color={this.state.isRecording === true ? "error" : "success"}*/}
+        {/*  src={mic}*/}
+        {/*></button>*/}
+
+        <button
+            style={{position:"absolute",
+            left: 20, top:20}}
+
+            onClick={this.playSound}>Play</button>
+        {/*<button*/}
+        {/*    style={{position:"absolute",*/}
+        {/*    left: 60, top:60}}*/}
+
+        {/*    onClick={this.load}>load</button>*/}
+
       </div>
     );
   }

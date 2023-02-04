@@ -1,5 +1,5 @@
 import os
-import whisper
+# import whisper
 import shutil
 from pygame import mixer
 import time
@@ -10,7 +10,7 @@ import json
 import boto3
 import sessionManager
 from flask_socketio import SocketIO, emit
-from phonet import Phonet
+# from phonet import Phonet
 import subprocess
 
 with open('auth.txt') as file:
@@ -156,7 +156,7 @@ def get_audio():
     return "audio received"
 
 
-model = whisper.load_model("small")
+# model = whisper.load_model("small")
 
 
 def save_audio(audio, imageName):
@@ -167,21 +167,21 @@ def save_audio(audio, imageName):
     folderName = getAudiosPath()
     name_audio = os.path.join(folderName, audioName)
     audio.save(name_audio)
-    print('Inference...')
-    result = model.transcribe(name_audio)
-    textName = fileName + '.txt'
-    name_text = os.path.join(folderName, textName)
-    f = open(name_text, "w")
-    print('Writing...')
-    f.write(result["text"])
-    f.close()
-    print('Done!')
-    phonet_name = f"Recordings/{audioName}"
-    print(phonet_name)
-    subprocess.Popen(
-        f'ffmpeg -i {phonet_name} -acodec pcm_s16le -ar 16000 {fileName}.wav', shell=True)
-    phon = Phonet(["all"])
-    phon.get_phon_wav(f"{fileName}.wav", f"{fileName}", True)
+    # print('Inference...')
+    # result = model.transcribe(name_audio)
+    # textName = fileName + '.txt'
+    # name_text = os.path.join(folderName, textName)
+    # f = open(name_text, "w")
+    # print('Writing...')
+    # f.write(result["text"])
+    # f.close()
+    # print('Done!')
+    # phonet_name = f"Recordings/{audioName}"
+    # print(phonet_name)
+    # subprocess.Popen(
+    #     f'ffmpeg -i {phonet_name} -acodec pcm_s16le -ar 16000 {fileName}.wav', shell=True)
+    # phon = Phonet(["all"])
+    # phon.get_phon_wav(f"{fileName}.wav", f"{fileName}", True)
 
     # uncomment to test if the audio is received correctly
 
