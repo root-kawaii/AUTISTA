@@ -1,15 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./Introduction.css";
 import IntroductionLines from "../Assets/Introduction/IntroductionLines.json";
 import protagonista from "../Assets/UI/protagonista.png";
 import AudioPlayer from "../AudioUtilities/AudioPlayer";
 import Box from "@mui/material/Box";
 import {useNavigate} from "react-router-dom";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 
 const owlLines = [];
-
 
 IntroductionLines.map(function (item){
     owlLines.push({
@@ -18,9 +17,11 @@ IntroductionLines.map(function (item){
     });
 })
 
+
 function Introduction() {
 
     const [progress, setProgress] = useState(0);
+    const [started, setStarted] = useState(false);
     const navigate = useNavigate();
 
 
@@ -35,6 +36,10 @@ function Introduction() {
         }
     }
 
+    const startPage = () =>{
+        setStarted(true);
+    }
+
     const playSound = () => {
         setTimeout(() => {  firstAudio.play(); console.log("first audio played")}, (animationDuration + animationDelay)*1000);
         // firstAudio.play()
@@ -43,7 +48,8 @@ function Introduction() {
     return (
         <div className="Introduction">
             <header className="Introduction-header">
-                <div>
+                {started ? (
+                    <div>
                     <motion.button
                             onLoad={playSound}
                             onClick={nextLine}
@@ -67,6 +73,10 @@ function Introduction() {
                   <text className="intro-text">{owlLines[progress].line}</text>
                 </Box>
                 </div>
+                ):(
+                    <button className="bigButton"
+                        onClick={startPage}> Let's Begin!</button>
+                )}
             </header>
         </div>
     );
