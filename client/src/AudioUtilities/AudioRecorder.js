@@ -1,10 +1,8 @@
 import React from "react";
 import MicRecorder from "mic-recorder-to-mp3";
-import { Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import MicIcon from "@mui/icons-material/Mic";
 import mic from "../Assets/UI/mic_icon.png";
-import AudioPlayer from "./AudioPlayer";
+import meg from "../Assets/UI/meg_icon.png";
 import "../AudioUtilities/AudioRecorder.css";
 import { motion } from "framer-motion";
 
@@ -89,11 +87,9 @@ class AudioRecorder extends React.Component {
   }
 
 
-playAudio() {
-  currentAudio.play();
-}
-
-load = () => {currentAudio = new Audio(this.state.blobURL)}
+// playAudio() {
+//   currentAudio.play();
+// }
 playSound = () => currentAudio.play()
 
 
@@ -121,48 +117,52 @@ playSound = () => currentAudio.play()
           ></motion.img>
         </IconButton>
 
-        {/*
+            {/*
                 <Button variant='contained' onClick={this.changeState} disabled={this.state.isRecording}>Record</Button>
                 <Button variant='contained' onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
             */}
+
+
+        {/*OLD IMPLEMENTATION*/}
+
         {/*<audio*/}
         {/*  className={this.props.className}*/}
         {/*  src={this.state.blobURL}*/}
         {/*  controls="controls"*/}
         {/*/>*/}
 
-          {/*<script>*/}
-          {/*  function play() {*/}
-          {/*      var audio = document.getElementById("audio");*/}
-          {/*      audio.play();*/}
-          {/*  }*/}
-          {/*  </script>*/}
-          {/*<input type="button" value="PLAY" onClick="play()"></input>*/}
-          {/*    <audio id="audio" src={this.state.blobURL}></audio>*/}
 
 
-        {/*<img*/}
-        {/*    style={{position:"absolute",*/}
-        {/*    left: 400}}*/}
-        {/*    src={mic} onClick={this.playAudio()}/>*/}
+        {/*                        I*/}
+        {/*QUESTO è QUELLO GIUSTO  V*/}
 
-        {/*  <button*/}
-
-        {/*  onClick={this.playAudio}*/}
-        {/*  color={this.state.isRecording === true ? "error" : "success"}*/}
-        {/*  src={mic}*/}
-        {/*></button>*/}
-
-        <button
-            style={{position:"absolute",
-            left: 20, top:20}}
-
-            onClick={this.playSound}>Play</button>
+        {/*TEST*/}
         {/*<button*/}
         {/*    style={{position:"absolute",*/}
-        {/*    left: 60, top:60}}*/}
+        {/*    left: 20, top:20}}*/}
+        {/*    */}
+        {/*    */}
 
-        {/*    onClick={this.load}>load</button>*/}
+        {/*    onClick={this.playSound}>Play</button>*/}
+
+
+        <IconButton
+          className="meg_button"
+          variant="contained"
+          aria-label="Play"
+          size="large"
+          onClick={this.playSound}
+        >
+          <motion.img
+            whileHover={{
+              scale: 1.5,
+              transition: { duration: 0.5 },
+            }}
+              whileTap={{ scale: 0.9 }}
+            className="meg_img"
+            src={meg}
+          ></motion.img>
+        </IconButton>
 
       </div>
     );

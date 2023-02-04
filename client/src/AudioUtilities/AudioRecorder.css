@@ -11,3 +11,17 @@
     width: 150px;
     align-items: center;
 }
+
+.meg_button{
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    top: 300px;
+    right: -150px;
+}
+
+.meg_img{
+    height: 150px;
+    width: 150px;
+    align-items: center;
+}
