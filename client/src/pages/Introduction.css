@@ -42,8 +42,8 @@
 
   width: 450px;
   height: 450px;
-  backgroundColor: #000000FF;
-  /*background:none;*/
+  /*backgroundColor: #000000FF;*/
+  background:none;
   border: none;
   position: absolute;
   top: 200px;

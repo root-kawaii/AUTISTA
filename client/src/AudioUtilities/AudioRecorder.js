@@ -86,10 +86,12 @@ class AudioRecorder extends React.Component {
     );
   }
 
-
+//  QUESTO NON FUNZIONA
 // playAudio() {
 //   currentAudio.play();
 // }
+
+//  QUESTO SI
 playSound = () => currentAudio.play()
 
 

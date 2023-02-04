@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import "./Introduction.css";
 import IntroductionLines from "../Assets/Introduction/IntroductionLines.json";
 import protagonista from "../Assets/UI/protagonista.png";
@@ -10,6 +10,7 @@ import {motion} from "framer-motion";
 
 const owlLines = [];
 
+
 IntroductionLines.map(function (item){
     owlLines.push({
         "line" : item.line,
@@ -17,11 +18,15 @@ IntroductionLines.map(function (item){
     });
 })
 
-
 function Introduction() {
 
     const [progress, setProgress] = useState(0);
     const navigate = useNavigate();
+
+
+    const firstAudio = new Audio(owlLines[0].audio);
+    const animationDuration = 6;
+    const animationDelay = 0.5;
 
     const nextLine = () => {
         setProgress(progress+1);
@@ -30,15 +35,24 @@ function Introduction() {
         }
     }
 
+    const playSound = () => {
+        setTimeout(() => {  firstAudio.play(); console.log("first audio played")}, (animationDuration + animationDelay)*1000);
+        // firstAudio.play()
+
+    }
     return (
         <div className="Introduction">
             <header className="Introduction-header">
                 <div>
                     <motion.button
+                            onLoad={playSound}
                             onClick={nextLine}
                             className="owlbutton"
-                            animate={{ x: [0, 100, 300], y:[0, -50, 20], scale: [0.0, 0.5, 1.2], opacity:[0.3,0.8, 1]}}
-                            transition={{repeat:0, duration: 4 , delay:1, times: [0, 0.4, 1], }} >
+                            animate={{ x: [600, -300, 150], y:[500, 250, 20], scale: [0.0, 0.6, 1.2], opacity:[0.1, 0.7, 1]}}
+                            transition={{repeat:0, duration: animationDuration , delay:animationDelay, times: [0, 0.6, 1], }}
+
+                    // animate={{ x: [150], y:[20], scale: [1.2], opacity:[1]}}
+                    >
 
                               <AudioPlayer
                               className="gufoIntro"
