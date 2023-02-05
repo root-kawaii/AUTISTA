@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import "./Introduction.css";
 import IntroductionLines from "../Assets/Introduction/IntroductionLines.json";
 import protagonista from "../Assets/UI/protagonista.png";
@@ -74,8 +74,21 @@ function Introduction() {
                 </Box>
                 </div>
                 ):(
-                    <button className="bigButton"
-                        onClick={startPage}> Let's Begin!</button>
+                    <motion.div
+                        whileHover={{
+                            scale: 1.2,
+                            transition: { duration: 0.5 },
+                        }}
+                        whileTap={{ scale: 0.9 }}
+                    >
+                            <button className="bigButton"
+                                onClick={startPage}
+
+
+                            > INIZIAMO!
+
+                            </button>
+                    </motion.div>
                 )}
             </header>
         </div>
