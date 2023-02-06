@@ -28,8 +28,6 @@ text_aray = []
 audio_array = []
 # Upload
 
-s3.Bucket('aui20222').upload_file(
-    Filename='audioBanana.aac', Key='audioBanana.aac')
 
 '''
 obj_list_key = []
@@ -101,7 +99,7 @@ selectedImages = []
 @ socketio.on("connect")
 def connected():
     print('connected')
-    print('broiasjasdfioas')
+    print(audio_array)
     emit("connect", {'keys': img_array[0], 'story_audio': audio_array[0],
          'story_texts': text_aray[0], 'prev_images': ["placeholder"]}, broadcast=True)
 

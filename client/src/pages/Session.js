@@ -186,14 +186,20 @@ function Session() {
             <AudioPlayer
               className="chooseImagePanel"
               source={protagonista}
+              key={
+                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
+              }
               url={
                 "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
               }
             ></AudioPlayer>
             <motion.img
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1, transition:{ duration: 1.2 , delay:1 }}}
-                viewport={{ once: true }}
+              initial={{ opacity: 0 }}
+              whileInView={{
+                opacity: 1,
+                transition: { duration: 1.2, delay: 1 },
+              }}
+              viewport={{ once: true }}
               whileHover={{
                 scale: 1.2,
                 transition: { duration: 0.5 },
@@ -230,15 +236,21 @@ function Session() {
             ></motion.img>
             <AudioPlayer
               source={booko}
+              key={
+                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dino gentile.mp3"
+              }
               url={
                 "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dino gentile.mp3"
               }
               className="buttonLeft"
             />
             <motion.img
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1, transition:{ duration: 1.2 , delay:1.8 }}}
-                viewport={{ once: true }}
+              initial={{ opacity: 0 }}
+              whileInView={{
+                opacity: 1,
+                transition: { duration: 1.2, delay: 1.8 },
+              }}
+              viewport={{ once: true }}
               whileHover={{
                 scale: 1.2,
                 transition: { duration: 0.5 },
@@ -275,15 +287,21 @@ function Session() {
             ></motion.img>
             <AudioPlayer
               source={booko}
+              key={
+                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3"
+              }
               url={
                 "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3"
               }
               className="buttonCentral"
             />
             <motion.img
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1, transition:{ duration: 1.2 , delay:2.6 }}}
-                viewport={{ once: true }}
+              initial={{ opacity: 0 }}
+              whileInView={{
+                opacity: 1,
+                transition: { duration: 1.2, delay: 2.6 },
+              }}
+              viewport={{ once: true }}
               whileHover={{
                 scale: 1.2,
                 transition: { duration: 0.5 },
@@ -320,6 +338,9 @@ function Session() {
             ></motion.img>
             <AudioPlayer
               source={booko}
+              key={
+                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"
+              }
               url={
                 "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"
               }
@@ -360,6 +381,9 @@ function Session() {
 
                 <AudioPlayer
                   source={booko}
+                  key={
+                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dinosauro.mp3"
+                  }
                   url={
                     "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dinosauro.mp3"
                   }
@@ -406,6 +430,9 @@ function Session() {
                 </Box>
                 <AudioPlayer
                   source={booko}
+                  key={
+                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Castllo pio.mp3"
+                  }
                   url={
                     "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Castllo pio.mp3"
                   }
@@ -467,6 +494,9 @@ function Session() {
                 </Box>
                 <AudioPlayer
                   source={booko}
+                  key={
+                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Dinoeventtesoro.mp3"
+                  }
                   url={
                     "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Dinoeventtesoro.mp3"
                   }

@@ -10,8 +10,6 @@ import protagonista from "../Assets/UI/protagonista.png";
 const currentBaseUrl = "https://aui20222.s3.eu-central-1.amazonaws.com/";
 const currentAudioName = "audioBanana.aac";
 
-
-
 const text = "banana";
 
 const useAudio = (url) => {
@@ -38,19 +36,21 @@ const useAudio = (url) => {
 
 const AudioPlayer = ({ url, className, source }) => {
   const [playing, toggle] = useAudio(url);
-  if (source==null)
-      source=protagonista
+  if (source == null) source = protagonista;
   return (
-    <div>
+    <div id={url} key={url} onClick={() => console.log({ url })}>
       <motion.img
-          // style={{background:"none",
-          //             border: "none",}}
-          whileHover={{
-                scale: 1.2,
-                transition: { duration: 0.5 },
-              }}
-          whileTap={{ scale: 0.9 }}
-          className={className} src={source} onClick={toggle}></motion.img>
+        // style={{background:"none",
+        //             border: "none",}}
+        whileHover={{
+          scale: 1.2,
+          transition: { duration: 0.5 },
+        }}
+        whileTap={{ scale: 0.9 }}
+        className={className}
+        src={source}
+        onClick={toggle}
+      ></motion.img>
     </div>
   );
 };
