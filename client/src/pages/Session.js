@@ -174,6 +174,23 @@ function Session() {
 
   return (
     <div className="Session">
+
+      <link rel="preload" as="image" href={next_button}/>
+      <link rel="preload" as="image" href={booko}/>
+      <link rel="preload" as="image" href={protagonista}/>
+
+      <link rel="preload" as="image" href={arrayImages[0][0]}/>
+      <link rel="preload" as="image" href={arrayImages[0][1]}/>
+      <link rel="preload" as="image" href={arrayImages[0][2]}/>
+
+      <link rel="preload" as="image" href={arrayImages[1][0]}/>
+      <link rel="preload" as="image" href={arrayImages[1][1]}/>
+      <link rel="preload" as="image" href={arrayImages[1][2]}/>
+
+      <link rel="preload" as="image" href={arrayImages[2][0]}/>
+      <link rel="preload" as="image" href={arrayImages[2][1]}/>
+      <link rel="preload" as="image" href={arrayImages[2][2]}/>
+
       <header className="Session-header">
         {/*<img src={uiBackground} className="uiBackground"/>*/}{" "}
         {/*TODO fix the background that covers everything except images*/}
@@ -193,13 +210,19 @@ function Session() {
                 "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
               }
             ></AudioPlayer>
-            <motion.img
-              initial={{ opacity: 0 }}
+            <motion.div
+                initial={{ opacity: 0 }}
               whileInView={{
                 opacity: 1,
                 transition: { duration: 1.2, delay: 1 },
-              }}
-              viewport={{ once: true }}
+              }}>
+            <motion.img
+              // initial={{ opacity: 0 }}
+              // whileInView={{
+              //   opacity: 1,
+              //   transition: { duration: 1.2, delay: 1 },
+              // }}
+              // viewport={{ once: false }}
               whileHover={{
                 scale: 1.2,
                 transition: { duration: 0.5 },
@@ -234,6 +257,13 @@ function Session() {
               alt="Immagine 1"
               className="imgLeft"
             ></motion.img>
+            </motion.div>
+            <motion.div
+                initial={{ opacity: 0 }}
+              whileInView={{
+                opacity: 1,
+                transition: { duration: 1.2, delay: 1 },
+              }}>
             <AudioPlayer
               source={booko}
               key={
@@ -244,13 +274,21 @@ function Session() {
               }
               className="buttonLeft"
             />
-            <motion.img
-              initial={{ opacity: 0 }}
+
+              </motion.div>
+            <motion.div
+                initial={{ opacity: 0 }}
               whileInView={{
                 opacity: 1,
                 transition: { duration: 1.2, delay: 1.8 },
-              }}
-              viewport={{ once: true }}
+              }}>
+            <motion.img
+              // initial={{ opacity: 0 }}
+              // whileInView={{
+              //   opacity: 1,
+              //   transition: { duration: 1.2, delay: 1.8 },
+              // }}
+              // viewport={{ once: true }}
               whileHover={{
                 scale: 1.2,
                 transition: { duration: 0.5 },
@@ -285,23 +323,38 @@ function Session() {
               alt="Immagine 2"
               className="imgCentral"
             ></motion.img>
-            <AudioPlayer
-              source={booko}
-              key={
-                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3"
-              }
-              url={
-                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3"
-              }
-              className="buttonCentral"
-            />
-            <motion.img
-              initial={{ opacity: 0 }}
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0 }}
+              whileInView={{
+                opacity: 1,
+                transition: { duration: 1.2, delay: 1.8 },
+              }}>
+                    <AudioPlayer
+                      source={booko}
+                      key={
+                        "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3"
+                      }
+                      url={
+                        "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3"
+                      }
+                      className="buttonCentral"
+                    />
+            </motion.div>
+            <motion.div
+                initial={{ opacity: 0 }}
               whileInView={{
                 opacity: 1,
                 transition: { duration: 1.2, delay: 2.6 },
-              }}
-              viewport={{ once: true }}
+              }}>
+            <motion.img
+              // initial={{ opacity: 0 }}
+              // whileInView={{
+              //   opacity: 1,
+              //   transition: { duration: 1.2, delay: 2.6 },
+              // }}
+              // viewport={{ once: true }}
               whileHover={{
                 scale: 1.2,
                 transition: { duration: 0.5 },
@@ -336,16 +389,25 @@ function Session() {
               alt="Immagine 3"
               className="imgRight"
             ></motion.img>
-            <AudioPlayer
-              source={booko}
-              key={
-                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"
-              }
-              url={
-                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"
-              }
-              className="buttonRight"
-            />
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0 }}
+              whileInView={{
+                opacity: 1,
+                transition: { duration: 1.2, delay: 2.6 },
+              }}>
+                      <AudioPlayer
+                        source={booko}
+                        key={
+                          "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"
+                        }
+                        url={
+                          "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"
+                        }
+                        className="buttonRight"
+                      />
+            </motion.div>
 
             {/* update every click... */}
             {/* <button onClick={fetchImages}>next page!</button> */}

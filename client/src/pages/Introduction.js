@@ -27,7 +27,7 @@ function Introduction() {
 
     const firstAudio = new Audio(owlLines[0].audio);
     const animationDuration = 6;
-    const animationDelay = 0.5;
+    const animationDelay = 0.1;
 
     const nextLine = () => {
         setProgress(progress+1);
