@@ -25,6 +25,8 @@ import princessGif from "../Assets/Gifs/princess.gif";
 import rocketGif from "../Assets/Gifs/razzo.gif";
 import castleGif from "../Assets/Gifs/castle.gif";
 import dragonGif from "../Assets/Gifs/dragon.gif";
+import forestGif from "../Assets/Gifs/forest.gif";
+import treasureMapGif from "../Assets/Gifs/treasure_map.gif";
 
 //import main images
 import rocket from "../Assets/Subjects/Razzo0.png";
@@ -34,6 +36,7 @@ import princess from "../Assets/Subjects/Principessa0.png";
 //import sceneries
 import space from "../Assets/Places/Spazio0.png";
 import arch from "../Assets/Places/I_Use_Arch_BTW_old.png";
+import forest from "../Assets/Places/Foresta0.png";
 import castle from "../Assets/Places/Castello0.png";
 
 //import secondary characters
@@ -93,16 +96,16 @@ function Session() {
   const arrayMainGif = [dinoGif, princessGif, rocketGif];
 
   //Array containing the 3 location choices
-  const arrayBackground = [space, castle, arch];
+  const arrayBackground = [space, castle, forest];
 
   //Array with the gifs of the 3 locations choices
-  const arrayBackgroundGif = [spaceGif, castleGif, arch];
+  const arrayBackgroundGif = [spaceGif, castleGif, forestGif];
 
   //Array containing the 3 secondary character choices
   const arrayAdventure = [dragon, treasure, wizard];
 
   //Array with the gifs of the 3 secondary character choices
-  const arrayAdventureGif = [dragonGif, treasure, wizardGif];
+  const arrayAdventureGif = [dragonGif, treasureMapGif, wizardGif];
 
   //Array containing the 3 image arrays. It is used to decide at runtime which images to show according to Pager
   const arrayImages = [arrayMain, arrayBackground, arrayAdventure];

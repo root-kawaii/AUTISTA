@@ -59,7 +59,6 @@ function Introduction() {
 
                     // animate={{ x: [150], y:[20], scale: [1.2], opacity:[1]}}
                     >
-
                               <AudioPlayer
                               className="gufoIntro"
                               source={protagonista}
