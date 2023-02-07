@@ -17,6 +17,7 @@ import Introduction from "./pages/Introduction";
 import {SocketContext, socket} from './components/socketto';
 import TestUI from "./pages/TestUI";
 import TestMotion from "./pages/testMotion";
+import EndSession from "./pages/EndSession";
 
 
 
@@ -52,7 +53,7 @@ function App() {
                       <Route path="/create" element={<CreateSession />} />
                       <Route path="/tutorMeeting/:sessionCode" element={<TutorMeeting />} />
                       <Route path="/test" element={<TestUI />} />
-
+                      <Route path="/session/end" element={<EndSession />} />
 
                        {/*<Route path="/test" element={<TextToSpeech banana />} />*/}
                       <Route path="/test" element={<Settings/>} />

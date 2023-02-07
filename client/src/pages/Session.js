@@ -151,6 +151,10 @@ function Session() {
     navigate("/join");
   };
 
+  const navigateEnd = () =>{
+    navigate("/session/end");
+  };
+
   // load initial state
   useEffect(setStates, []);
 
@@ -192,8 +196,6 @@ function Session() {
       <link rel="preload" as="image" href={arrayImages[2][2]}/>
 
       <header className="Session-header">
-        {/*<img src={uiBackground} className="uiBackground"/>*/}{" "}
-        {/*TODO fix the background that covers everything except images*/}
         {err ? (
           <h2>{err.message}</h2>
         ) : isLoading ? (
@@ -408,15 +410,6 @@ function Session() {
                         className="buttonRight"
                       />
             </motion.div>
-
-            {/* update every click... */}
-            {/* <button onClick={fetchImages}>next page!</button> */}
-            {/* <AudioPlayer
-                  url={
-                    "https://aui20222.s3.eu-central-1.amazonaws.com/audioBanana.aac"
-                  }
-                />
-                <AudioRecorder /> */}
           </>
         ) : (
           //From here is the code for displaying what the user has chosen during the session
@@ -576,7 +569,7 @@ function Session() {
                   whileTap={{ scale: 0.9 }}
                   src={next_button}
                   className="next_button"
-                  onClick={progress}
+                  onClick={navigateEnd}
                 ></motion.img>
               </>
             )}
