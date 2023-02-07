@@ -39,7 +39,6 @@
 }
 
 .owlbutton {
-
   width: 450px;
   height: 450px;
   /*backgroundColor: #000000FF;*/
@@ -71,4 +70,13 @@
 .bigButton:hover {
   background-color: white; /* Green */
   color: blue;
+}
+
+.intro-text{
+  font-size: 100px;
+  flex: 1;
+  horiz-align: center;
+  vertical-align: center;
+  position: relative;
+  line-height: 150px;
 }
