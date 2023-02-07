@@ -22,11 +22,11 @@
 }
 
 .owlChatBox{
-  width: 800px;
-  height: 500px;
+  width: 900px;
+  height: 700px;
   position: absolute;
   left: 100px;
-  top: 180px;
+  top: 100px;
   border: 5px solid lightblue;
   border-radius: 16px;
 }

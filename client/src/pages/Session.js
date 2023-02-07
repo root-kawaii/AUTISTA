@@ -109,6 +109,9 @@ function Session() {
 
   //Array containing the 3 image arrays. It is used to decide at runtime which images to show according to Pager
   const arrayImages = [arrayMain, arrayBackground, arrayAdventure];
+  
+  //Array containing the 3 audios for the owl. It is used to decide at runtime which audio to play according to Pager
+  const owlAudios = ["https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3", "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3", "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"]
 
   const setStates = () => {
     setPullState(true);
@@ -175,6 +178,10 @@ function Session() {
       setAnimatedSecondary(false);
     }, 3000);
   };
+  const playSound = () => {
+        var currentOwlAudio = new Audio(owlAudios[pager]);
+        setTimeout(() => {  currentOwlAudio.play(); console.log("currentOwlAudio audio played")}, 500);
+    }
 
   return (
     <div className="Session">
@@ -202,9 +209,11 @@ function Session() {
           <h2>loading... </h2>
         ) : isSelection ? (
           <>
+            
             <AudioPlayer
               className="chooseImagePanel"
               source={protagonista}
+              
               key={
                 "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
               }
@@ -213,6 +222,9 @@ function Session() {
               }
             ></AudioPlayer>
             <motion.div
+                
+                onLoad={playSound}
+                
                 initial={{ opacity: 0 }}
               whileInView={{
                 opacity: 1,

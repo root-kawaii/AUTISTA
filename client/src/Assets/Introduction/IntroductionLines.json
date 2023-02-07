@@ -1,14 +1,14 @@
 [
   {
-    "line": "Ciao! io sono il gufo",
+    "line": "Ciao! Io sono il gufo! Clicca su di me per farmi parlare!",
     "audio": "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
   },
   {
-    "line": "piacere di conoscerti!",
+    "line": "Piacere di conoscerti, io ti aiuterò in questa avventura!",
     "audio": "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
   },
-    {
-    "line": "Cominciamo l'avventura!",
+  {
+    "line": "Cominciamo!",
     "audio": "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
   }
 ]
