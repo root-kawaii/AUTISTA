@@ -40,31 +40,39 @@ function Introduction() {
         setStarted(true);
     }
 
-    const playSound = () => {
+    const playFirstSound = () => {
         setTimeout(() => {  firstAudio.play(); console.log("first audio played")}, (animationDuration + animationDelay)*1000);
-        // firstAudio.play()
-
     }
+    
+    const playSound = () => {
+        var aux = new Audio(owlLines[progress+1].audio)
+        aux.play();
+    }
+    
+    
+    
     return (
         <div className="Introduction">
             <header className="Introduction-header">
                 {started ? (
                     <div>
                     <motion.button
-                            onLoad={playSound}
+                            onLoad={playFirstSound}
                             onClick={nextLine}
                             className="owlbutton"
-                            animate={{ x: [600, -300, 150], y:[500, 250, 20], scale: [0.0, 0.6, 1.2], opacity:[0.1, 0.7, 1]}}
+                            animate={{ x: [600, -180, 150], y:[500, 250, 20], scale: [0.0, 0.6, 1.2], opacity:[0.1, 0.7, 1]}}
                             transition={{repeat:0, duration: animationDuration , delay:animationDelay, times: [0, 0.6, 1], }}
-
-                    // animate={{ x: [150], y:[20], scale: [1.2], opacity:[1]}}
                     >
-                              <AudioPlayer
-                              className="gufoIntro"
-                              source={protagonista}
-                              url={owlLines[progress].audio}
-                              // url={"https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3" }
-                              ></AudioPlayer>
+                        <motion.img
+                                    whileHover={{
+                                      scale: 1.2,
+                                      transition: { duration: 0.5 },
+                                    }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className="gufoIntro"
+                                    src={protagonista}
+                                    onClick={playSound}
+                        ></motion.img>
 
                     </motion.button>
 
