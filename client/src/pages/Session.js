@@ -111,7 +111,17 @@ function Session() {
   const arrayImages = [arrayMain, arrayBackground, arrayAdventure];
   
   //Array containing the 3 audios for the owl. It is used to decide at runtime which audio to play according to Pager
-  const owlAudios = ["https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3", "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3", "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"]
+  const owlAudios = ["https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3",
+    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dove.mp3",
+    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/eventoo.mp3"]
+  
+  
+  const characters = ["https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dino gentile.mp3",
+                      "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3",
+                      "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"]
+  const places = [null, null, null]
+  const events = [null, "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Mappa+del+tesoro.mp3", null]
+  const subjectsAudios = [characters, places, events]
 
   const setStates = () => {
     setPullState(true);
@@ -182,6 +192,11 @@ function Session() {
         var currentOwlAudio = new Audio(owlAudios[pager]);
         setTimeout(() => {  currentOwlAudio.play(); console.log("currentOwlAudio audio played")}, 500);
     }
+    
+    const playOwlSound = () => {
+        var currentOwlAudio = new Audio(owlAudios[pager]);
+        currentOwlAudio.play();
+    }
 
   return (
     <div className="Session">
@@ -210,17 +225,29 @@ function Session() {
         ) : isSelection ? (
           <>
             
-            <AudioPlayer
-              className="chooseImagePanel"
-              source={protagonista}
-              
-              key={
-                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
-              }
-              url={
-                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"
-              }
-            ></AudioPlayer>
+            {/*<AudioPlayer*/}
+            {/*  className="chooseImagePanel"*/}
+            {/*  source={protagonista}*/}
+            {/*  */}
+            {/*  key={*/}
+            {/*    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"*/}
+            {/*  }*/}
+            {/*  url={*/}
+            {/*    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/protagonista.mp3"*/}
+            {/*  }*/}
+            {/*></AudioPlayer>*/}
+            
+            <motion.img
+                        whileHover={{
+                          scale: 1.2,
+                          transition: { duration: 0.5 },
+                        }}
+                        whileTap={{ scale: 0.9 }}
+                        className="chooseImagePanel"
+                        src={protagonista}
+                        onClick={playOwlSound}
+            ></motion.img>
+            
             <motion.div
                 
                 onLoad={playSound}
@@ -280,13 +307,15 @@ function Session() {
               }}>
             <AudioPlayer
               source={booko}
-              key={
-                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dino gentile.mp3"
-              }
-              url={
-                "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dino gentile.mp3"
-              }
-              className="buttonLeft"
+              // key={
+              //   "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dino gentile.mp3"
+              // }
+              // url={
+              //   "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dino gentile.mp3"
+              // }
+                key={subjectsAudios[pager][0]}
+                url={subjectsAudios[pager][0]}
+                className="buttonLeft"
             />
 
               </motion.div>
@@ -347,13 +376,15 @@ function Session() {
               }}>
                     <AudioPlayer
                       source={booko}
-                      key={
-                        "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3"
-                      }
-                      url={
-                        "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3"
-                      }
-                      className="buttonCentral"
+                      // key={
+                      //   "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3"
+                      // }
+                      // url={
+                      //   "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3"
+                      // }
+                        key={subjectsAudios[pager][1]}
+                        url={subjectsAudios[pager][1]}
+                        className="buttonCentral"
                     />
             </motion.div>
             <motion.div
@@ -413,13 +444,15 @@ function Session() {
               }}>
                       <AudioPlayer
                         source={booko}
-                        key={
-                          "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"
-                        }
-                        url={
-                          "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"
-                        }
-                        className="buttonRight"
+                        // key={
+                        //   "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"
+                        // }
+                        // url={
+                        //   "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"
+                        // }
+                          key={subjectsAudios[pager][2]}
+                          url={subjectsAudios[pager][2]}
+                          className="buttonRight"
                       />
             </motion.div>
           </>

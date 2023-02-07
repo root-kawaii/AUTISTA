@@ -17,10 +17,10 @@ function EndSession () {
                     <AudioPlayer
                       source={booko}
                       key={ /*TODO AUDIO VITTORIA*/
-                        "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3"
+                        "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Complimenti.mp3"
                       }
                       url={
-                        "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3"
+                        "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Complimenti.mp3"
                       }
                       className="victoryPageButton"
                     />
