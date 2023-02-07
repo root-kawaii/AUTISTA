@@ -119,8 +119,12 @@ function Session() {
   const characters = ["https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dino gentile.mp3",
                       "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3",
                       "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"]
-  const places = [null, null, null]
-  const events = [null, "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Mappa+del+tesoro.mp3", null]
+  const places = [null,
+                  "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/castello.mp3",
+                  null]
+  const events = [null,
+                  "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Mappa+del+tesoro.mp3",
+                  null]
   const subjectsAudios = [characters, places, events]
 
   const setStates = () => {
@@ -590,15 +594,15 @@ function Session() {
                   onClick={() => animateSecondaryImage()}
                 ></motion.img>
                 <Box className="textBox">
-                  <text className="Session-text">EVVAI</text>
+                  <text className="Session-text">BAULE</text>
                 </Box>
                 <AudioPlayer
                   source={booko}
                   key={
-                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Dinoeventtesoro.mp3"
+                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/baule.mp3"
                   }
                   url={
-                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Dinoeventtesoro.mp3"
+                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/baule.mp3"
                   }
                   className="storyPanelButton"
                 />
