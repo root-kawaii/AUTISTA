@@ -480,7 +480,7 @@ function Session() {
                   onClick={() => animateMainImage()}
                 ></motion.img>
                 <Box className="textBox">
-                  <text className="Session-text">BA</text>
+                  <text className="Session-text">BANANA</text>
                 </Box>
 
                 <AudioPlayer
