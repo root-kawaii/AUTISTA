@@ -1,14 +1,14 @@
 [
   {
-    "line": "Ciao! Io sono il gufo! Clicca su di me per farmi parlare!",
+    "line": "CIAO! IO SONO IL GUFO ANACLETO!",
     "audio": "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/gufo1.mp3"
   },
   {
-    "line": "Piacere di conoscerti, io ti aiuterò in questa avventura!",
+    "line": "PIACERE DI CONOSCERTI, IO TI AIUTERÒ IN QUESTA AVVENTURA!",
     "audio": "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Gufo2.mp3"
   },
   {
-    "line": "Cominciamo!",
+    "line": "COMINCIAMO!",
     "audio": "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/gufo3.mp3"
   }
 ]
