@@ -119,12 +119,12 @@ function Session() {
   const characters = ["https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/dino gentile.mp3",
                       "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/rossina.mp3",
                       "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Razzo pres.mp3"]
-  const places = [null,
+  const places = ["https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/spazio.mp3",
                   "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/castello.mp3",
-                  null]
-  const events = [null,
+                  "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/foresta.mp3"]
+  const events = ["https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Drago.mp3",
                   "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Mappa+del+tesoro.mp3",
-                  null]
+                  "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/mago.mp3"]
   const subjectsAudios = [characters, places, events]
 
   const setStates = () => {
