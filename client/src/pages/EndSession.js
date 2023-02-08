@@ -9,6 +9,7 @@ import booko from "../Assets/UI/book_button.png";
 function EndSession () {
     return(
         <div className="EndSession">
+            <link rel="preload" as="image" href={trophy}/>
             <header className="EndSession-Header">
 
                 <Box className="EndTextBox">
