@@ -535,10 +535,10 @@ function Session() {
                 <AudioPlayer
                   source={booko}
                   key={
-                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Castllo pio.mp3"
+                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Baubau.mp3"
                   }
                   url={
-                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Castllo pio.mp3"
+                    "https://aui20222.s3.eu-central-1.amazonaws.com/Stories_Char/Baubau.mp3"
                   }
                   className="storyPanelButton"
                 />
