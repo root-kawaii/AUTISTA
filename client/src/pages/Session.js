@@ -530,7 +530,7 @@ function Session() {
                   onClick={() => animateMainImage()}
                 ></motion.img>
                 <Box className="textBox">
-                  <text className="Session-text">PIO</text>
+                  <text className="Session-text">BAU BAU</text>
                 </Box>
                 <AudioPlayer
                   source={booko}
